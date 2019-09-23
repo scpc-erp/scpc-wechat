@@ -56,15 +56,12 @@
 	width: 32rpx;
 	height: 32rpx;
 	left: 66rpx; 
-	top: 30rpx;
+	top: 35rpx;
 }
 .bottom-view-accountInput {
-	width:560rpx;
-	height:100%;
 	font-size:34rpx;
-	font-family:PingFangSC-Regular,PingFangSC;
 	font-weight:400;
-	margin-left: 100rpx;
+	margin: 0 66rpx 0 100rpx;
 	color:rgba(51,51,51,1);
 	line-height:48rpx;
 	border-bottom: 1rpx solid #EEEEEE;
@@ -82,24 +79,25 @@
 	width: 32rpx;
 	height: 32rpx;
 	left: 66rpx; 
-	top: 30rpx;
+	top: 35rpx;
 }
 .bottom-view-pwdInput{
-	width:560rpx;
-	height:100%;
 	font-size:34rpx;
 	font-family:PingFangSC-Regular,PingFangSC;
 	font-weight:400;
-	margin-left: 100rpx;
+	margin: 0 66rpx 0 100rpx;
 	color:rgba(51,51,51,1);
 	line-height:48rpx;
 	border-bottom: 1rpx solid #EEEEEE;
 }
 .bottom-view-loginBtn{
-	width: 640rpx;
+	margin: 88rpx 55rpx 0 55rpx;
+	
+	/* margin-top: 88upx; */
+	/* margin-left:55upx; */
+	/* margin-right:55upx; */
 	height: 88rpx;
-	margin: 0 auto;
-	margin-top: 88rpx;
+	
 	background:rgba(39,179,157,1);
 	border-radius:44rpx;
 	font-size:34rpx;

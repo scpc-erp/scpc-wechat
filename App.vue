@@ -17,6 +17,7 @@
 	page {
 		min-height: 100%;
 		display: flex;
+		font-family:PingFangSC-Regular,PingFangSC;
 	}
 
 	/* #ifdef MP-BAIDU */
