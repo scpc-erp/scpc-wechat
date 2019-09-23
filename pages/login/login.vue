@@ -14,11 +14,11 @@
 		<view class="bottom-view">
 			<view class="bottom-view-account">
 				<image class="bottom-view-account-uimg" src="../../static/img/login/Login-icon.png"></image>
-				<m-input class="bottom-view-accountInput" type="text" placeholder="请输入姓名"/>
+				<m-input class="bottom-view-accountInput" type="text" placeholder="请输入姓名" v-model="account"/>
 			</view>
 			<view class="bottom-view-pwd">
 				<image class="bottom-view-account-pimg" src="../../static/img/login/Login-qrCode.png"></image>	
-				<m-input class="bottom-view-pwdInput" type="password" placeholder="请输入密码"/>
+				<m-input class="bottom-view-pwdInput" type="password" placeholder="请输入密码" v-model="password"/>
 			</view> 
 			<button type="primary" class="bottom-view-loginBtn" @tap="handleLoginBtn">登录</button>
 		</view>
@@ -27,22 +27,45 @@
 
 <script>
 	import mInput from '@/components/m-input.vue'
+	import service from '../../service/login.js';
 	export default {
 		components:{
 			mInput
 		},
 		data() {
 			return {
-				
+				// 账号
+				account:'admin',
+				// 密码
+				password:'123456'
 			}
 		},
 		methods:{
-			handleLoginBtn(){
+			async handleLoginBtn(){
+				// 名称判断
+				if (this.account.length < 4 || this.account.length == 0) {
+					uni.showToast({
+						icon: 'none',
+						title: '请输入正确的名称'
+					});
+					return;
+					
+				}
 				
+				// 密码判断
+				if (this.password.length < 6 || this.password.length == 0) {
+					uni.showToast({
+						icon: 'none',
+						title: '请输入正确的密码'
+					});
+					return;
+				}	
+				
+				const validUser = await service.login(this.account, this.password)
+				console.log(validUser);
 			}
 		}
 	}
-
 </script>
 
 <style>
@@ -142,12 +165,7 @@
 	
 	.bottom-view-loginBtn{
 		margin: 88upx 55upx 0 55upx;
-		
-		/* margin-top: 88upx; */
-		/* margin-left:55upx; */
-		/* margin-right:55upx; */
 		height: 88upx;
-		
 		background:rgba(39,179,157,1);
 		border-radius:44upx;
 		font-size:34upx;
