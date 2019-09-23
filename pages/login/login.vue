@@ -5,8 +5,8 @@
 		</view>
 		<view class="top-view">
 			<view class="top-view-content">
-				<!-- <view class="top-view-content-one">三维博弈ERP</view> -->
-				<view class="top-view-content-one">矿山易购Boss端</view>
+				<view class="top-view-content-one">三维博弈ERP</view>
+				<!-- <view class="top-view-content-one">矿山易购Boss端</view> -->
 				<image class="top-view-content-two" src="../../static/img/login/Login-cover.png"></image>
 				<view class="top-view-content-three">实时生产跟踪</view>
 			</view>
@@ -14,18 +14,36 @@
 		<view class="bottom-view">
 			<view class="bottom-view-account">
 				<image class="bottom-view-account-uimg" src="../../static/img/login/Login-icon.png"></image>
-				<input type="text" placeholder="请输入姓名" class="bottom-view-accountInput"/>
+				<m-input class="bottom-view-accountInput" type="text" placeholder="请输入姓名"/>
 			</view>
 			<view class="bottom-view-pwd">
 				<image class="bottom-view-account-pimg" src="../../static/img/login/Login-qrCode.png"></image>	
-				<input type="text" placeholder="请输入密码" class="bottom-view-pwdInput"/>
+				<m-input class="bottom-view-pwdInput" type="password" placeholder="请输入密码"/>
 			</view> 
-			<button type="primary" class="bottom-view-loginBtn">登录</button>
+			<button type="primary" class="bottom-view-loginBtn" @tap="handleLoginBtn">登录</button>
 		</view>
 	</view>
 </template>
 
-<script></script>
+<script>
+	import mInput from '@/components/m-input.vue'
+	export default {
+		components:{
+			mInput
+		},
+		data() {
+			return {
+				
+			}
+		},
+		methods:{
+			handleLoginBtn(){
+				
+			}
+		}
+	}
+
+</script>
 
 <style>
 	.status_bar{
@@ -86,16 +104,13 @@
 		width: 32upx;
 		height: 32upx;
 		left: 66upx; 
-		top: 30upx;
+		top: 35upx;
 	}
 	
 	.bottom-view-accountInput {
-		width:560upx;
-		height:100%;
 		font-size:34upx;
-		font-family:PingFangSC-Regular,PingFangSC;
 		font-weight:400;
-		margin-left: 100upx;
+		margin: 0 66upx 0 100upx;
 		color:rgba(51,51,51,1);
 		line-height:48upx;
 		border-bottom: 1upx solid #EEEEEE;
@@ -112,26 +127,27 @@
 		width: 32upx;
 		height: 32upx;
 		left: 66upx; 
-		top: 30upx;
+		top: 35upx;
 	}
 	
 	.bottom-view-pwdInput{
-		width:560upx;
-		height:100%;
 		font-size:34upx;
 		font-family:PingFangSC-Regular,PingFangSC;
 		font-weight:400;
-		margin-left: 100upx;
+		margin: 0 66upx 0 100upx;
 		color:rgba(51,51,51,1);
 		line-height:48upx;
 		border-bottom: 1upx solid #EEEEEE;
 	}
 	
 	.bottom-view-loginBtn{
-		width: 640upx;
+		margin: 88upx 55upx 0 55upx;
+		
+		/* margin-top: 88upx; */
+		/* margin-left:55upx; */
+		/* margin-right:55upx; */
 		height: 88upx;
-		margin: 0 auto;
-		margin-top: 88upx;
+		
 		background:rgba(39,179,157,1);
 		border-radius:44upx;
 		font-size:34upx;
