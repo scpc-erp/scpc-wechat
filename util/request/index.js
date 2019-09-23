@@ -39,7 +39,9 @@ request.ajax = (url, data,method = 'POST',  power) => {
         dataType: 'json',
         header: headers
     }).then(res => {
-        if (res[1].data.errno && res[1].data.errno == 0) {
+		console.log(res);
+		console.log(res[1].data.errno);
+        if (res[1].data.errno || res[1].data.errno == 0) {
             return res[1].data
         } else {
             throw res[1].data

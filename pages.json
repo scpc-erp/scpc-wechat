@@ -1,38 +1,21 @@
 {
-    "pages": [ //pages数组中第一项表示应用启动页,
+    "pages": [
 		{
 			"path": "pages/login/login",
 			"style": {
 				"navigationStyle": "custom"
 			}
+		},{
+			"path": "pages/task/task",
+			"style": {
+				"navigationBarTitleText": "任务"
+			}
+		},{
+			"path": "pages/mine/mine",
+			"style": {
+				"navigationBarTitleText": "我的"
+			}
 		}
-	
-        // {
-        //     "path": "pages/main/main",
-        //     "style": {
-        //         "navigationBarTitleText": "登录模板"
-        //     }
-        // }, {
-        //     "path": "pages/login/login",
-        //     "style": {
-        //         "navigationBarTitleText": "登录"
-        //     }
-        // }, {
-        //     "path": "pages/reg/reg",
-        //     "style": {
-        //         "navigationBarTitleText": "注册"
-        //     }
-        // }, {
-        //     "path": "pages/pwd/pwd",
-        //     "style": {
-        //         "navigationBarTitleText": "找回密码"
-        //     }
-        // }, {
-        //     "path": "pages/user/user",
-        //     "style": {
-        //         "navigationBarTitleText": "我的"
-        //     }
-        // }
     ],
     "tabBar": {
         "color": "#7a7e83",

@@ -61,8 +61,26 @@
 					return;
 				}	
 				
-				const validUser = await service.login(this.account, this.password)
-				console.log(validUser);
+				const res = await service.login(this.account, this.password)
+				console.log(res);
+				if (res.errno == 0) {
+					uni.setStorageSync('token', res.data.token)
+					uni.showToast({
+						icon:'none',
+						title:'登录成功'
+					});
+					setTimeout(function() {
+						uni.hideToast(),
+						uni.reLaunch({
+							url:'../task/task'
+						})
+					}, 2000);
+				} else {
+					uni.showToast({
+						icon:'none',
+						title : res.errMsg
+					})
+				}
 			}
 		}
 	}
