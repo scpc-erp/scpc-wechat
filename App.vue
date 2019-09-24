@@ -17,8 +17,8 @@
 	page {
 		min-height: 100%;
 		display: flex;
+		font-family:PingFangSC-Regular,PingFangSC;
 	}
-
 	/* #ifdef MP-BAIDU */
 	page {
 		width: 100%;
@@ -59,8 +59,9 @@
 		display: flex;
 		flex: 1;
 		flex-direction: column;
-		background-color: #efeff4;
-		padding: 20upx;
+		background-color: #FFFFFF;
+		padding: 0upx;
+		margin:  0upx;
 	}
 
 	.input-group {
