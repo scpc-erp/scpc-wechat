@@ -3,16 +3,22 @@ import store from '../../store/index'
 const request = {}
 
 const headers = {
-	// 'Content-Type': 'application/x-www-form-urlencoded'
+	'Content-Type': 'application/x-www-form-urlencoded',
+
 }
 const PORT1 = '/baseinfo'
-const BASE_URL =  process.env.NODE_ENV === 'development' ? 'http://192.168.0.116:8360' : 'http://yg-api-new.zydl-tec.cn'
-    
-request.ajax = (url, data,method = 'POST',  power) => {
-/*     权限判断 因为有的接口请求头可能需要添加的参数不一样，所以这里做了区分
-== 不通过access_token校验的接口
-== 文件下载接口列表
-== 验证码登录 */
+
+// http://swby-scpc.ngrok.ibanzhuan.cn/api
+// http://192.168.2.184:8360
+const BASE_URL =  process.env.NODE_ENV === 'development' ? 'http://swby-scpc.ngrok.ibanzhuan.cn/api' : 'http://yg-api-new.zydl-tec.cn'
+
+request.ajax = (url, data, method = 'POST',  power) => {
+/*     
+	权限判断 因为有的接口请求头可能需要添加的参数不一样，所以这里做了区分
+	  == 不通过access_token校验的接口
+	  == 文件下载接口列表
+	  == 验证码登录 
+*/
     switch (power){
         case 1:
             headers['Authorization'] = 'Basic a3N1ZGk6a3N1ZGk='
@@ -27,8 +33,11 @@ request.ajax = (url, data,method = 'POST',  power) => {
             // headers['Authorization'] = `Bearer ${
             //     this.$store.getters.userInfo
             // }`
-            headers['Token'] = uni.getStorageSync('token')
-			// headers['Token'] = '14017056489fdd48a22f4937a883c18dfb44a733'
+			const token = uni.getStorageSync('token');
+			if (token) {
+				console.log('token==='+token);
+				headers['token'] = token;
+			}
             break;
     }
             

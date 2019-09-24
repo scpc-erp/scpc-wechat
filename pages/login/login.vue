@@ -27,7 +27,8 @@
 
 <script>
 	import mInput from '@/components/m-input.vue'
-	import service from '../../service/login.js';
+	import service from '../../service/service.js';
+	
 	export default {
 		components:{
 			mInput
@@ -49,7 +50,6 @@
 						title: '请输入正确的名称'
 					});
 					return;
-					
 				}
 				
 				// 密码判断
