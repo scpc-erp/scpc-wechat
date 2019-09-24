@@ -6,7 +6,7 @@ const headers = {
 	// 'Content-Type': 'application/x-www-form-urlencoded'
 }
 const PORT1 = '/baseinfo'
-const BASE_URL =  process.env.NODE_ENV === 'development' ? '' : 'http://yg-api-new.zydl-tec.cn'
+const BASE_URL =  process.env.NODE_ENV === 'development' ? 'http://192.168.0.116:8360' : 'http://yg-api-new.zydl-tec.cn'
     
 request.ajax = (url, data,method = 'POST',  power) => {
 /*     权限判断 因为有的接口请求头可能需要添加的参数不一样，所以这里做了区分

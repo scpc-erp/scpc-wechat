@@ -66,22 +66,22 @@
         "usingComponents" : true
     },
     "mp-toutiao" : {
-        "usingComponents" : true
+        "usingComponents" : true 
     },
     "h5" : {
         "devServer" : {
-            "https" : false,
-            "port": 8360,
-            "disableHostCheck": false,
-            "proxy": {
-                "/api": {
-                    "target": "http://192.168.0.116",
-                    "changeOrigin": true,
-                    "pathRewrite":{
-                        "^/api":""
-                    }
-                }
-            }
-        }
+            // "https" : false,
+            // "port": 8360,
+            // "disableHostCheck": false,
+            // "proxy": {
+            //     "/api": {
+            //         "target": "http://192.168.0.116",
+            //         "changeOrigin": true,
+            //         "pathRewrite":{
+            //             "^/api":""
+            //         }
+            //     }
+            // }
+        } 
     }
 }
