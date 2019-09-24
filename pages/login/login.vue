@@ -75,7 +75,7 @@
 							url:'../task/task'
 						})
 					}, 2000);
-				} else {
+				}else{
 					uni.showToast({
 						icon:'none',
 						title : res.errMsg
