@@ -5,8 +5,8 @@
 		</view>
 		<view class="top-view">
 			<view class="top-view-content">
-				<view class="top-view-content-one">三维博弈ERP</view>
-				<!-- <view class="top-view-content-one">矿山易购Boss端</view> -->
+				<!-- <view class="top-view-content-one">三维博弈ERP</view> -->
+				<view class="top-view-content-one">矿山易购Boss端</view>
 				<image class="top-view-content-two" src="../../static/img/login/Login-cover.png"></image>
 				<view class="top-view-content-three">实时生产跟踪</view>
 			</view>
@@ -75,7 +75,7 @@
 							url:'../task/task'
 						})
 					}, 2000);
-				} else {
+				}else{
 					uni.showToast({
 						icon:'none',
 						title : res.errMsg

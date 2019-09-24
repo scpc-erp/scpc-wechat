@@ -17,22 +17,28 @@
 				"navigationStyle": "custom",
 				"navigationBarTitleText": "我的"
 			}
+		},{
+			"path": "pages/test/test",
+			"style": {
+				"navigationStyle": "custom",
+				"navigationBarTitleText": "test" 
+			}
 		}
     ],
     "tabBar": {
         "color": "#7a7e83",
-        "selectedColor": "#0faeff",
+        "selectedColor": "#27B39D",
         "backgroundColor": "#ffffff",
         "list": [{
             "pagePath": "pages/task/task",
             "text": "任务",
-            "iconPath": "static/img/tabbar-mine-nor.png",
-            "selectedIconPath": "static/img/tabbar-task-sel.png"
+            "iconPath": "static/img/tabbar/tabbar_task_nor.png",
+            "selectedIconPath": "static/img/tabbar/tabbar_task_sel.png"
         }, {
             "pagePath": "pages/mine/mine",
             "text": "我的",
-            "iconPath": "static/img/tabbar-mine-nor.png",
-            "selectedIconPath": "static/img/tabbar-mine-sel.png"
+            "iconPath": "static/img/tabbar/tabbar_mine_nor.png",
+            "selectedIconPath": "static/img/tabbar/tabbar_mine_sel.png"
         }]
     },
     "globalStyle": {

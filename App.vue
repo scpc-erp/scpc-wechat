@@ -19,7 +19,6 @@
 		display: flex;
 		font-family:PingFangSC-Regular,PingFangSC;
 	}
-
 	/* #ifdef MP-BAIDU */
 	page {
 		width: 100%;

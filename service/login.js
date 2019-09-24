@@ -5,7 +5,6 @@ const STATE_KEY = 'STATE_KEY';
 
 // 登录
 const login = function(user_name, user_pwd) {
-	
 	return request.ajax('/user/login',{username: user_name, password:user_pwd})
 }
 
