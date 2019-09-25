@@ -1,6 +1,6 @@
 <template>
 	<view class="content">
-		<view class="all-item">
+		<view class="all-item" @tap="handleGotoDescView">
 			<view class="row-one">
 				<text class="order-top-Num">{{item.SSDD_TEXT}}</text>
 				<text class="order-status" :class="{'status-danger':item.DDLEVEL=='0401','status-warning':item.DDLEVEL=='0402'}">{{leavel[item.DDLEVEL]}}</text>
@@ -46,10 +46,14 @@
 			};
 		},
 		methods:{
-			openDetail(id,name){
+			// 前往详情页面
+			handleGotoDescView() {
+				console.log('1234');
 				uni.navigateTo({
-					url: '../../pages/custom/custom-money-list?cid='+id + '&name=' + name,
-				});
+					url: '../../pages/task/taskDesc',
+					animationDuration:200,
+					animationType:'pop-in'
+				})
 			}
 		}
 	}
