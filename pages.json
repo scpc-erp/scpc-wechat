@@ -9,7 +9,8 @@
 			"path": "pages/task/task",
 			"style": {
 				"navigationStyle": "custom",
-				"navigationBarTitleText": "任务"
+				"navigationBarTitleText": "任务",
+				"enablePullDownRefresh": true
 			}
 		},{
 			"path": "pages/mine/mine",
