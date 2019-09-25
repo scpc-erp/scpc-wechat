@@ -11,8 +11,6 @@
 				</view>
 			</view>
 			<view class="top-info-view"> 
-				
-				
 			</view>
 		</view> 
 	</view>

@@ -22,7 +22,8 @@
 				<view class="order-radio"></view>
 				<text class="order-push-time-prompt">交货日期</text>
 				<text class="order-push-time">{{item.ENDTIME}}</text>
-				<button type="primary" class="submit">提交任务</button>
+				<!-- <button type="primary" class="submit">提交任务</button> -->
+				<button class="submit">提交任务</button>
 			</view>
 			
 		</view>

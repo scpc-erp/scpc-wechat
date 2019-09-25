@@ -1,0 +1,8 @@
+{
+  "navigationBarTitleText": "今日任务",
+  "enablePullDownRefresh": true,
+  "usingComponents": {
+    "m-list": "/components/m-list",
+    "m-input": "/components/m-input"
+  }
+}
