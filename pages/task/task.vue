@@ -6,7 +6,7 @@
 				<m-input class="search-input" type="text" placeholder="搜索任务" @input="listingValueChange" v-model="inputContent"/>
 			</view>
 		</view>
-		<view  class="content-list">
+		<view class="content-list">
 			<mList class="list" v-for="(item, key) in dataList" :key="key" :item="item"></mList>
 		</view>
 	</view>
@@ -124,7 +124,7 @@
 		height: 68upx;
 		background: rgba(255, 255, 255, 0.17);
 		border-radius: 35upx;
-		position: relative;
+		position: absolute;
 	}
 
 	.search-img {
