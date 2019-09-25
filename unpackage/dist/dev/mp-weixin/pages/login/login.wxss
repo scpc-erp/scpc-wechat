@@ -6,7 +6,7 @@
 .top-view{
 	width: 100%;
 	height: 540rpx; 
-	background: url(../../static/img/Login-bg.beee0f96.png);
+	/* background: url('../../static/img/mine/mine-topBG.png'); */
 	background-size: cover;
 }
 .top-view-content{ 
@@ -92,16 +92,12 @@
 }
 .bottom-view-loginBtn{
 	margin: 88rpx 55rpx 0 55rpx;
-	
-	/* margin-top: 88upx; */
-	/* margin-left:55upx; */
-	/* margin-right:55upx; */
 	height: 88rpx;
-	
 	background:rgba(39,179,157,1);
 	border-radius:44rpx;
 	font-size:34rpx;
 	font-family:PingFangSC-Medium,PingFangSC;
 	font-weight:500;
+	color:rgba(255,255,255,1);
 }
 

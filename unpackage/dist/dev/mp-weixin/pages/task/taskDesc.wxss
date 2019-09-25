@@ -1,0 +1,8 @@
+
+.top-view{
+	width: 100%;
+	height: 318rpx; 
+	background: url(../../static/img/task-desc-topBG.c52effc0.png);
+	background-size: cover;
+}
+

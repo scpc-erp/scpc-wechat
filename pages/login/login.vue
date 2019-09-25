@@ -2,8 +2,9 @@
 	<view class="content">
 		<view class="status_bar">
 			<!-- 由于取消了导航条这里放个占位导航条view -->
-		</view>
-		<view class="top-view">
+		</view> 
+		
+		<view class="top-view" :style="{backgroundImage: 'url(' + background + ')'}"> 
 			<view class="top-view-content">
 				<!-- <view class="top-view-content-one">三维博弈ERP</view> -->
 				<view class="top-view-content-one">矿山易购Boss端</view>
@@ -20,14 +21,16 @@
 				<image class="bottom-view-account-pimg" src="../../static/img/login/Login-qrCode.png"></image>	
 				<m-input class="bottom-view-pwdInput" type="password" placeholder="请输入密码" v-model="password"/>
 			</view> 
-			<button type="primary" class="bottom-view-loginBtn" @tap="handleLoginBtn">登录</button>
+			<!-- <button type="primary" class="bottom-view-loginBtn" @tap="handleLoginBtn">登录</button> -->
+			<button class="bottom-view-loginBtn" @tap="handleLoginBtn">登录</button>
 		</view>
 	</view>
 </template>
 
 <script>
-	import mInput from '@/components/m-input.vue'
+	import mInput from '@/components/m-input.vue';
 	import service from '../../service/service.js';
+	import img from '../../static/img/login/Login-bg.png';
 	
 	export default {
 		components:{
@@ -38,7 +41,9 @@
 				// 账号
 				account:'admin',
 				// 密码
-				password:'123456'
+				password:'123456',
+				// 为了适配小程序 将顶部背景图转成base64
+				background: img
 			}
 		},
 		methods:{
@@ -82,7 +87,12 @@
 					})
 				}
 			}
-		}
+		},
+		
+		onLoad() {
+			let base64 = uni.getFileSystemManager().readFileSync(this.background, 'base64');
+			this.background = 'data:image/png;base64,' + base64;
+		} 
 	}
 </script>
 
@@ -95,10 +105,10 @@
 	.top-view{
 		width: 100%;
 		height: 540upx; 
-		background: url('../../static/img/login/Login-bg.png');
+		/* background: url('../../static/img/mine/mine-topBG.png'); */
 		background-size: cover;
 	}
-		
+	
 	.top-view-content{ 
 		margin: 25% 10%; 
 	}
@@ -189,5 +199,6 @@
 		font-size:34upx;
 		font-family:PingFangSC-Medium,PingFangSC;
 		font-weight:500;
+		color:rgba(255,255,255,1);
 	}
 </style>
