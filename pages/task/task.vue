@@ -3,7 +3,7 @@
 		<view class="top-view">
 			<view class="search-BG-view">
 				<image src="../../static/img/task/task-search.png" mode="" class="search-img"></image> 
-				<m-input class="search-input" type="text" placeholder="搜索任务"/>
+				<m-input class="search-input" type="text" placeholder="搜索任务" @input="listingValueChange" v-model="inputContent"/>
 			</view>
 		</view>
 		<view  class="content-list">
@@ -24,59 +24,81 @@
 		},
 		data() {
 			return {
+				// 请求对象
 				params: {
 					'tableId': "010401",
 					'pageNumber': 1,
-					'pageSize': 5
+					'pageSize': 10,
+					'queryKey' : "搜索"
 				},
 				isLoadMore: true,
-				dataList: []
+				dataList: [],
+				// 用户输入的内容
+				inputContent:''
 			}
 		},
 		
+		// 进入页面后刷新数据
 		onShow() {
 			this.params.pageNumber = 1
-			this.initData()
+			this.params.queryKey = ""
+			this.initData(0)
 		},
 		
+		// 下拉刷新
 		onPullDownRefresh() {
 			this.params.pageNumber = 1
-			this.initData()
+			this.initData(0)
 			this.isLoadMore = true
 			uni.showToast({
 				'icon':'none',
 				'title':'刷新成功'
 			})
 			uni.stopPullDownRefresh()
-			
 		},
 		
+		// 加载更多数据
 		onReachBottom() {
 			if (this.isLoadMore) {
 				this.params.pageNumber++
-				this.initData()
+				this.initData(0)
 			}
 		},
 		methods: {
-			async initData() {
-				let res = await service.taskList(this.params)
-				console.log(res.data);
-				if (res.errno == 0) {
-					if (this.params.pageNumber == 1) {
-						this.dataList = res.data.data;
-					} else {
-						this.dataList = this.dataList.concat(res.data.data);
+			async initData(type) {
+				// type==0 列表刷新 params不包含queryKey 
+				// type==1 搜索刷新 params包含queryKey 
+				if (type == 0) {
+					let res = await service.taskList(this.params)
+					if (res.errno == 0) {
+						if (this.params.pageNumber == 1) {
+							this.dataList = res.data.data;
+						} else {
+							this.dataList = this.dataList.concat(res.data.data);
+						}
+						if (res.data.data.length < 10) {
+							this.isLoadMore = false;
+						}
 					}
-					if (res.data.data.length < 5) {
-						this.isLoadMore = false;
+				} else {
+					let res = await service.taskListSearch(this.params)
+					if (res.errno == 0) {
+						if (this.params.pageNumber == 1) {
+							this.dataList = res.data.data;
+						} else {
+							this.dataList = this.dataList.concat(res.data.data);
+						}
+						if (res.data.data.length < 10) {
+							this.isLoadMore = false;
+						}
 					}
-				}
+				} 
 			},
-			handleClick() {
-				console.log('12341234');
-				uni.navigateTo({
-					url: '../test/test'
-				});
+			// 用户搜索后刷新数据
+			listingValueChange() { 
+				this.params.pageNumber = 1
+				this.params.queryKey = this.inputContent 
+				this.initData(1)
 			}
 		}
 	}

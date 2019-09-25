@@ -16,8 +16,8 @@ const taskList = function (params) {
 }
 
 // 任务列表搜索
-const taskListSearch = function (id, number, size, key) {
-	return request.ajax('/tableData/queryTableData', {tableid: tableid, pageNumber:number, pageSize: size, queryKey: key}, 'GET')
+const taskListSearch = function (params) {
+	return request.ajax('/tableData/queryTableData', params, 'GET')
 }
 
 // 获取客户列表
