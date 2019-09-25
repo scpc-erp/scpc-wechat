@@ -15,7 +15,7 @@
 				</view>
 				<view class="">
 					<text class="order-num">{{item.JGSL}}</text>
-					<text class="order-num-prompt">数量(个数)</text>
+					<text class="order-num-prompt">数量</text>
 				</view>
 			</view>
 			<view class="row-four">
