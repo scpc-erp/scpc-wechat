@@ -164,5 +164,6 @@
   color: #ffffff;
   line-height: 60rpx;
   margin-right: 40rpx;
+  z-index: 1;
 }
 

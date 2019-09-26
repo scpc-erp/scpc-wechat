@@ -136,7 +136,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 var _default =
 {
   name: 'm-list',
@@ -162,6 +161,10 @@ var _default =
         animationDuration: 200,
         animationType: 'pop-in' });
 
+    },
+    // 点击提交按钮
+    handleSubmitTask: function handleSubmitTask() {
+      console.log("123123");
     } } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 

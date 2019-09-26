@@ -1,13 +1,35 @@
 <template>
 	<view class="content">
+		<view class="hud-view" @tap='handleHiddenHUD'>
+			<view class="hud-content-view">
+				<view class="order-info">
+					<view class="order-num">QR-00393</view>
+					<view class="order-name">支架 29K-00-21</view>
+				</view>
+				<view class="hud-submit-allView">
+					<view class="all-prompt">全部提交</view>
+				</view>
+				<view class="hud-submit-partView">
+					<view class="part-prompt">部分提交</view>
+					<view class="part-input-view">
+						<view class="part-input-prompt">已完成件数</view>
+						<view class="part-input">此处是个input此处是个</view>
+						<view class="part-input-unit">件</view>
+					</view>
+				</view>
+				<view class="hud-submit-view">
+					<button class="hud-submit-btn">确认提交</button>
+				</view>
+			</view>
+		</view>
 		<view class="top-view">
 			<view class="search-BG-view">
-				<image src="../../static/img/task/task-search.png" mode="" class="search-img"></image> 
-				<m-input class="search-input" type="text" placeholder="搜索任务" @input="listingValueChange" v-model="inputContent"/>
+				<image src="../../static/img/task/task-search.png" mode="" class="search-img"></image>
+				<m-input class="search-input" type="text" placeholder="搜索任务" @input="listingValueChange" v-model="inputContent" />
 			</view>
 		</view>
 		<view class="content-list">
-			<mList class="list" v-for="(item, key) in dataList" :key="key" :item="item"></mList>
+			<mList class="list" v-for="(item, key) in dataList" @handleSubmitTask="handleSubmitTask" :key="key" :item="item"></mList>
 		</view>
 	</view>
 </template>
@@ -16,7 +38,7 @@
 	import mInput from '@/components/m-input.vue'
 	import mList from '@/components/m-list.vue';
 	import service from '../../service/service.js';
-	
+
 	export default {
 		components: {
 			mList,
@@ -29,34 +51,34 @@
 					'tableId': "010401",
 					'pageNumber': 1,
 					'pageSize': 10,
-					'queryKey' : "搜索"
+					'queryKey': "搜索"
 				},
 				isLoadMore: true,
 				dataList: [],
 				// 用户输入的内容
-				inputContent:''
+				inputContent: ''
 			}
 		},
-		
+
 		// 进入页面后刷新数据
 		onShow() {
 			this.params.pageNumber = 1
 			this.params.queryKey = ""
 			this.initData(0)
 		},
-		
+
 		// 下拉刷新
 		onPullDownRefresh() {
 			this.params.pageNumber = 1
 			this.initData(0)
 			this.isLoadMore = true
 			uni.showToast({
-				'icon':'none',
-				'title':'刷新成功'
+				'icon': 'none',
+				'title': '刷新成功'
 			})
 			uni.stopPullDownRefresh()
 		},
-		
+
 		// 加载更多数据
 		onReachBottom() {
 			if (this.isLoadMore) {
@@ -92,13 +114,20 @@
 							this.isLoadMore = false;
 						}
 					}
-				} 
+				}
 			},
 			// 用户搜索后刷新数据
-			listingValueChange() { 
+			listingValueChange() {
 				this.params.pageNumber = 1
-				this.params.queryKey = this.inputContent 
+				this.params.queryKey = this.inputContent
 				this.initData(1)
+			},
+			// 点击提交任务
+			handleSubmitTask(row) {
+				console.log(row)
+			},
+			handleHiddenHUD() {
+				console.log('1234');
 			}
 		}
 	}
@@ -107,6 +136,7 @@
 <style lang="less">
 	.content {
 		background-color: #f7f7f7;
+		position: relative;
 	}
 
 	.top-view {
@@ -123,7 +153,7 @@
 		right: 24upx;
 		height: 68upx;
 		background: rgba(255, 255, 255, 0.17);
-		border-radius: 35upx;
+		border-radius: 35upx; 
 		position: absolute;
 	}
 
@@ -134,7 +164,7 @@
 		top: 17upx;
 		left: 48upx;
 	}
-	
+
 	.search-input {
 		position: absolute;
 		height: 100%;
@@ -143,15 +173,163 @@
 		right: 24upx;
 		font-size: 28upx;
 		color: rgba(255, 255, 255, 1);
-		.uni-input-placeholder{
+
+		.uni-input-placeholder {
 			color: rgba(255, 255, 255, 1);
 		}
 	}
-	.content-list{
-		margin-top:96upx;
+
+	.content-list {
+		padding-top: 96upx;
 	}
-	.list{ 
+
+	.list {
 		width: 100%;
-		top: 96upx; 
+	}
+
+	.hud-view {
+		width: 100%;
+		height: 100%;
+		position: fixed;
+		background: rgba(0, 0, 0, 0.5);
+		z-index: 9999;
+	}
+
+	.hud-content-view {
+		margin: 50% 50upx 0 50upx;
+		border-radius: 15upx;
+		background-color: white;
+		display: flex;
+		flex-direction: column;
+	}
+
+	/*******************************************/
+	// 订单信息
+	.order-info {
+		height: 90upx;
+		display: flex;
+		flex-direction: row;
+		background-color: #EEEEEE;
+		border-bottom: 1upx #EEEEEE dashed;
+		justify-content: space-between;
+		align-items: center;
+		box-shadow:0upx 0upx 15upx #EEEEEF;
+		// border-radius: 15upx;
+		border-radius: 10upx 10upx 0upx 0upx;
+	}
+
+	// 订单号
+	.order-num {
+		margin-left: 46upx;
+		font-size: 30upx; 
+		font-weight: 400;
+		font-family: PingFangSC-Regular, PingFangSC;
+		color: rgba(51, 51, 51, 1);
+		line-height: 37upx;
+	}
+
+	// 订单名称
+	.order-name {
+		margin-right: 46upx;
+		font-size: 30upx;
+		font-family: PingFangSC-Regular, PingFangSC;
+		color: rgba(51, 51, 51, 1);
+		font-weight: 400;
+		line-height: 37upx;
+	}
+
+	// 全部提交
+	.hud-submit-allView {
+		width: 100%;
+		display: flex;
+		justify-content: flex-start;
+		border-bottom: 1upx #EEEEEE solid;
+	}
+
+	// 全部提交提示文字
+	.all-prompt {
+		margin-left: 46upx;
+		height: 140upx;
+		font-size: 28upx;
+		line-height: 140upx;
+		font-family: PingFangSC-Medium, PingFangSC;
+		color: rgba(51, 51, 51, 1);
+		font-weight: 500;
+		align-items: center;
+		justify-content: center;
+	}
+
+	/*******************************************/
+	// 部分提交
+	.hud-submit-partView {
+		width: 100%;
+		display: flex;
+		flex-direction: column;
+	}
+
+	// 部分提交提示文字
+	.part-prompt {
+		margin: 22upx 0 0 46upx;
+		height: 45upx;
+		font-size: 28upx;
+		font-family: PingFangSC-Medium, PingFangSC;
+		font-weight: 500;
+		color: rgba(51, 51, 51, 1);
+		line-height: 45upx;
+	}
+
+	// 用户输入的view
+	.part-input-view {
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+		margin: 19upx 46upx 22upx 46upx;
+	}
+
+	.part-input-prompt {
+		height: 37upx;
+		font-size: 25upx;
+		font-family: PingFangSC-Regular, PingFangSC;
+		font-weight: 400;
+		color: rgba(153, 153, 153, 1);
+		line-height: 37upx;
+		flex: 0.3;
+	}
+
+	.part-input {
+		height: 37upx;
+		font-size: 25upx;
+		font-family: PingFangSC-Regular, PingFangSC;
+		font-weight: 400;
+		color: rgba(153, 153, 153, 1);
+		line-height: 37upx;
+		flex: 0.5;
+	}
+
+	.part-input-unit {
+		height: 37upx;
+		font-size: 25upx;
+		font-family: PingFangSC-Regular, PingFangSC;
+		font-weight: 400;
+		color: rgba(153, 153, 153, 1);
+		line-height: 37upx;
+		flex: 0.1;
+	}
+
+	/*******************************************/
+	// 底部提交
+	.hud-submit-view {
+		width: 100%; 
+		border-radius: 0upx 0upx 10upx 10upx;
+	}
+
+	.hud-submit-btn {
+		width: 100%;
+		color: white;
+		background: #27B39D;
+		font-size: 32upx;
+		font-weight: 500;
+		font-family: PingFangSC-Medium, PingFangSC;
+		border-radius: 0upx 0upx 10upx 10upx;
 	}
 </style>
