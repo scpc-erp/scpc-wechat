@@ -162,6 +162,11 @@ var _default =
         animationDuration: 200,
         animationType: 'pop-in' });
 
+    },
+    // 点击提交按钮
+    handleSubmitTask: function handleSubmitTask(row) {
+      // 将点击时间传出
+      this.$emit('handleSubmitTask', row);
     } } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 

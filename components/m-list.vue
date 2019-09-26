@@ -23,10 +23,10 @@
 				<text class="order-push-time-prompt">交货日期</text>
 				<text class="order-push-time">{{item.ENDTIME}}</text>
 				<!-- <button type="primary" class="submit">提交任务</button> -->
-				<button class="submit">提交任务</button>
+				<button class="submit" @tap.stop='handleSubmitTask(item)'>提交任务</button>
 			</view>
-			
 		</view>
+		<view class="hud-view"></view>
 	</view>
 </template>
 
@@ -55,6 +55,11 @@
 					animationDuration:200,
 					animationType:'pop-in'
 				})
+			},
+			// 点击提交按钮
+			handleSubmitTask(row) {
+				// 将点击时间传出
+				this.$emit('handleSubmitTask', row)
 			}
 		}
 	}
