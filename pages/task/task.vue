@@ -1,22 +1,28 @@
 <template>
 	<view class="content">
-		<view class="hud-view" @tap='handleHiddenHUD'>
+		<view class="hud-view" @tap='handleHiddenHUD' v-show="isHUDShow">
 			<view class="hud-content-view">
 				<view class="order-info">
 					<view class="order-num">QR-00393</view>
 					<view class="order-name">支架 29K-00-21</view>
 				</view>
-				<view class="hud-submit-allView">
-					<view class="all-prompt">全部提交</view>
-				</view>
-				<view class="hud-submit-partView">
-					<view class="part-prompt">部分提交</view>
-					<view class="part-input-view">
-						<view class="part-input-prompt">已完成件数</view>
-						<view class="part-input">此处是个input此处是个</view>
-						<view class="part-input-unit">件</view>
+				
+				<radio-group @change="radioChange">
+					<view class="hud-submit-allView" v-for="(item, index) in radioList" :key="item.value">
+						<view class="all-prompt">
+							<radio class="radioClass" color="#27B39D" :value="item.name" :checked="index === current"/>
+							<text>{{item.name}}</text>
+						</view>
+						<view class="part-input-view">
+							<view class="part-input-prompt">完成件数</view>
+							<view class="part-input-right">
+								<view class="part-input">1000</view>
+								<view class="part-input-unit">件</view>
+							</view>
+						</view>
 					</view>
-				</view>
+				</radio-group>
+				
 				<view class="hud-submit-view">
 					<button class="hud-submit-btn">确认提交</button>
 				</view>
@@ -56,7 +62,20 @@
 				isLoadMore: true,
 				dataList: [],
 				// 用户输入的内容
-				inputContent: ''
+				inputContent: '',
+				radioList:[
+					{
+						value:'0',
+						name:'全部提交',
+						checked: 'true'
+					},{
+						value:'1',
+						name:'部分提交'
+					},
+				],
+				current: 0,
+				// 提交页面的属性
+				isHUDShow:true
 			}
 		},
 
@@ -122,13 +141,28 @@
 				this.params.queryKey = this.inputContent
 				this.initData(1)
 			},
-			// 点击提交任务
+			// 点击提交任务,弹出选择提交类型页面
 			handleSubmitTask(row) {
-				console.log(row)
+				this.isHUDShow = !this.isHUDShow;
 			},
+			// 隐藏提交类型页面
 			handleHiddenHUD() {
-				console.log('1234');
+				console.log('隐藏提交类型页面');
+				this.isHUDShow = !this.isHUDShow;
+			},
+			// 点击radio后方法
+			radioChange: function(evt) {
+				console.log(evt);
+				for (let i = 0; i < this.radioList.length; i++) {
+					if (this.radioList[i].value === evt.target.value) {
+						this.current = i;
+						break;
+					}
+				}
 			}
+		},
+		onLoad() {
+			this.isHUDShow = !this.isHUDShow;
 		}
 	}
 </script>
@@ -213,8 +247,7 @@
 		border-bottom: 1upx #EEEEEE dashed;
 		justify-content: space-between;
 		align-items: center;
-		box-shadow:0upx 0upx 15upx #EEEEEF;
-		// border-radius: 15upx;
+		box-shadow:0upx 0upx 15upx #EEEEEF; 
 		border-radius: 10upx 10upx 0upx 0upx;
 	}
 
@@ -242,21 +275,22 @@
 	.hud-submit-allView {
 		width: 100%;
 		display: flex;
-		justify-content: flex-start;
 		border-bottom: 1upx #EEEEEE solid;
+		flex-direction: column;
+	}
+	
+	.radioClass{
+		color: #27B39D;
+		transform: scale(0.7);
 	}
 
 	// 全部提交提示文字
 	.all-prompt {
-		margin-left: 46upx;
-		height: 140upx;
 		font-size: 28upx;
-		line-height: 140upx;
-		font-family: PingFangSC-Medium, PingFangSC;
-		color: rgba(51, 51, 51, 1);
 		font-weight: 500;
-		align-items: center;
-		justify-content: center;
+		margin: 22upx 0 0 36upx;
+		color: rgba(51, 51, 51, 1);
+		font-family: PingFangSC-Medium, PingFangSC;
 	}
 
 	/*******************************************/
@@ -269,7 +303,7 @@
 
 	// 部分提交提示文字
 	.part-prompt {
-		margin: 22upx 0 0 46upx;
+		margin: 22upx 0 0 36upx;
 		height: 45upx;
 		font-size: 28upx;
 		font-family: PingFangSC-Medium, PingFangSC;
@@ -285,6 +319,11 @@
 		justify-content: space-between;
 		margin: 19upx 46upx 22upx 46upx;
 	}
+	
+	.part-input-right {
+		display: flex;
+		justify-content: flex-end;
+	}
 
 	.part-input-prompt {
 		height: 37upx;
@@ -292,8 +331,7 @@
 		font-family: PingFangSC-Regular, PingFangSC;
 		font-weight: 400;
 		color: rgba(153, 153, 153, 1);
-		line-height: 37upx;
-		flex: 0.3;
+		line-height: 37upx; 
 	}
 
 	.part-input {
@@ -302,8 +340,7 @@
 		font-family: PingFangSC-Regular, PingFangSC;
 		font-weight: 400;
 		color: rgba(153, 153, 153, 1);
-		line-height: 37upx;
-		flex: 0.5;
+		line-height: 37upx; 
 	}
 
 	.part-input-unit {
@@ -312,8 +349,8 @@
 		font-family: PingFangSC-Regular, PingFangSC;
 		font-weight: 400;
 		color: rgba(153, 153, 153, 1);
-		line-height: 37upx;
-		flex: 0.1;
+		line-height: 37upx; 
+		margin-left: 10upx;
 	}
 
 	/*******************************************/

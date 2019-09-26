@@ -136,6 +136,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 var _default =
 {
   name: 'm-list',
@@ -163,8 +164,9 @@ var _default =
 
     },
     // 点击提交按钮
-    handleSubmitTask: function handleSubmitTask() {
-      console.log("123123");
+    handleSubmitTask: function handleSubmitTask(row) {
+      // 将点击时间传出
+      this.$emit('handleSubmitTask', row);
     } } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
