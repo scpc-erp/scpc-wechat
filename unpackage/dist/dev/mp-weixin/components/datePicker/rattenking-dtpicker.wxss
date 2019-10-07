@@ -1,0 +1,24 @@
+
+.rui-picker{
+	height: 10vw;
+	font-size: 4vw;
+	color: #000;
+	display: -webkit-flex;
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-align: center;
+	-webkit-align-items: center;
+	    -ms-flex-align: center;
+	        align-items: center;
+	-webkit-box-sizing: border-box;
+	        box-sizing: border-box;
+	border-radius: 10rpx;
+	-webkit-box-pack: center;
+	-webkit-justify-content: center;
+	    -ms-flex-pack: center;
+	        justify-content: center;
+	background-color: white;
+	margin: 0rpx 20rpx;
+}
+

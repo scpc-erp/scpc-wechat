@@ -1,0 +1,8 @@
+{
+  "navigationBarTitleText": "额定工时",
+  "usingComponents": {
+    "top-tab": "/components/wuc-tab/wuc-tab",
+    "m-list": "/components/m-list",
+    "date-picker": "/components/datePicker/rattenking-dtpicker"
+  }
+}

@@ -1,0 +1,14 @@
+
+.content {
+	background-color: #f7f7f7;
+}
+.total_task_view{
+	margin-top: 90rpx;
+	font-size:32rpx;
+	font-family:PingFangSC-Medium,PingFangSC;
+	font-weight:500;
+	color:rgba(51,51,51,1);
+	line-height:45rpx;
+	padding: 26rpx 0rpx 0rpx 30rpx;
+}
+

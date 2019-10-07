@@ -3,7 +3,9 @@
         "pages/login/login",
         "pages/task/task",
         "pages/task/taskDesc",
-        "pages/mine/mine"
+        "pages/mine/mine",
+        "pages/mine/mineTimes",
+        "pages/mine/mineTask"
     ],
     "subPackages": [],
     "window": {
@@ -32,5 +34,5 @@
     },
     "permission": {},
     "usingComponents": {},
-    "sitemapLocation": "sitemap93.json"
+    "sitemapLocation": "sitemap84.json"
 }

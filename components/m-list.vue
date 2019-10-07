@@ -26,7 +26,6 @@
 				<button class="submit" @tap.stop='handleSubmitTask(item)'>提交任务</button>
 			</view>
 		</view>
-		<view class="hud-view"></view>
 	</view>
 </template>
 

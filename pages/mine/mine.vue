@@ -18,7 +18,7 @@
 				<view class="prompt_view">
 					<image src="../../static/img/mine/mine-time.png" mode="" class="left_image"></image>
 					<text class="prompt-text">额定工时</text>
-					<image src="../../static/img/mine/mine-right.png" mode="" class="right_image" @tap="handleTimeButton"></image>
+					<!-- <image src="../../static/img/mine/mine-right.png" mode="" class="right_image" @tap="handleTimeButton"></image> -->
 				</view>
 				<!-- 额定工时内容 -->
 				<view class="content-view">
@@ -47,7 +47,7 @@
 				<view class="prompt_view">
 					<image src="../../static/img/mine/mine-task.png" mode="" class="left_image"></image>
 					<text class="prompt-text">我的任务</text>					
-					<image src="../../static/img/mine/mine-right.png" mode="" class="right_image" @tap="handleTaskButton"></image>
+					<!-- <image src="../../static/img/mine/mine-right.png" mode="" class="right_image" @tap="handleTaskButton"></image> -->
 				</view>
 				<!-- 我的任务内容 -->
 				<view class="content-view">
@@ -87,15 +87,15 @@
 		},
 		methods:{
 			handleTimeButton(){
-				uni.navigateTo({
-					url: '../mine/mineTimes'
-				})
+				// uni.navigateTo({
+				// 	url: '../mine/mineTimes'
+				// })
 			},
 			
 			handleTaskButton(){
-				uni.navigateTo({
-					url: '../mine/mineTask'
-				})
+				// uni.navigateTo({
+				// 	url: '../mine/mineTask'
+				// })
 			},
 			
 			onLoad() {

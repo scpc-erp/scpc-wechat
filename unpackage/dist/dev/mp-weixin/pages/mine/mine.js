@@ -141,6 +141,65 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 var _mineTopBG = _interopRequireDefault(__webpack_require__(/*! ../../static/img/mine/mine-topBG.png */ 54));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };} //
 //
 //
@@ -159,8 +218,73 @@ var _mineTopBG = _interopRequireDefault(__webpack_require__(/*! ../../static/img
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 var _default = { data: function data() {return { // 为了适配小程序 将顶部背景图转成base64
-      background: _mineTopBG.default };}, methods: { onLoad: function onLoad() {var base64 = uni.getFileSystemManager().readFileSync(this.background, 'base64');this.background = 'data:image/png;base64,' + base64;} } };exports.default = _default;
+      background: _mineTopBG.default };}, methods: { handleTimeButton: function handleTimeButton() {// uni.navigateTo({
+      // 	url: '../mine/mineTimes'
+      // })
+    }, handleTaskButton: function handleTaskButton() {// uni.navigateTo({
+      // 	url: '../mine/mineTask'
+      // })
+    }, onLoad: function onLoad() {var base64 = uni.getFileSystemManager().readFileSync(this.background, 'base64');this.background = 'data:image/png;base64,' + base64;} } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),

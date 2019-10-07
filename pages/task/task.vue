@@ -159,6 +159,7 @@
 						break;
 					}
 				}
+				return false;
 			}
 		},
 		onLoad() {
@@ -180,7 +181,7 @@
 		position: fixed;
 		z-index: 999;
 	}
-
+	
 	.search-BG-view {
 		top: 15upx;
 		left: 24upx;
