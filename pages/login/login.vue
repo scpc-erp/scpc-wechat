@@ -11,11 +11,11 @@
 		<view class="bottom-view">
 			<view class="bottom-view-account">
 				<image class="bottom-view-account-uimg" src="../../static/img/login/Login-icon.png"></image>
-				<m-input class="bottom-view-accountInput" type="text" placeholder="请输入姓名" v-model="account" />
+				<m-input class="bottom-view-accountInput" type="text" placeholder="请输入姓名" v-model="account"/>
 			</view>
 			<view class="bottom-view-pwd">
 				<image class="bottom-view-account-pimg" src="../../static/img/login/Login-qrCode.png"></image>
-				<m-input class="bottom-view-pwdInput" type="password" placeholder="请输入密码" v-model="password" />
+				<m-input class="bottom-view-pwdInput" type="password" placeholder="请输入密码" v-model="password"/>
 			</view>
 			<!-- <button type="primary" class="bottom-view-loginBtn" @tap="handleLoginBtn">登录</button> -->
 			<button class="bottom-view-loginBtn" @tap="handleLoginBtn" open-type="getUserInfo" @getuserinfo="wxGetUserInfo">登录</button>

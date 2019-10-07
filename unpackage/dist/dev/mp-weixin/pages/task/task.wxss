@@ -112,28 +112,25 @@
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: start;
-  -webkit-justify-content: flex-start;
-      -ms-flex-pack: start;
-          justify-content: flex-start;
   border-bottom: 1rpx #EEEEEE solid;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+.radioClass {
+  color: #27B39D;
+  -webkit-transform: scale(0.7);
+      -ms-transform: scale(0.7);
+          transform: scale(0.7);
 }
 .all-prompt {
-  margin-left: 46rpx;
-  height: 140rpx;
   font-size: 28rpx;
-  line-height: 140rpx;
-  font-family: PingFangSC-Medium, PingFangSC;
-  color: #333333;
   font-weight: 500;
-  -webkit-box-align: center;
-  -webkit-align-items: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  margin: 22rpx 0 0 36rpx;
+  color: #333333;
+  font-family: PingFangSC-Medium, PingFangSC;
 }
 /*******************************************/
 .hud-submit-partView {
@@ -149,7 +146,7 @@
           flex-direction: column;
 }
 .part-prompt {
-  margin: 22rpx 0 0 46rpx;
+  margin: 22rpx 0 0 36rpx;
   height: 45rpx;
   font-size: 28rpx;
   font-family: PingFangSC-Medium, PingFangSC;
@@ -173,6 +170,16 @@
           justify-content: space-between;
   margin: 19rpx 46rpx 22rpx 46rpx;
 }
+.part-input-right {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+  -webkit-justify-content: flex-end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+}
 .part-input-prompt {
   height: 37rpx;
   font-size: 25rpx;
@@ -180,10 +187,6 @@
   font-weight: 400;
   color: #999999;
   line-height: 37rpx;
-  -webkit-box-flex: 0.3;
-  -webkit-flex: 0.3;
-      -ms-flex: 0.3;
-          flex: 0.3;
 }
 .part-input {
   height: 37rpx;
@@ -192,10 +195,6 @@
   font-weight: 400;
   color: #999999;
   line-height: 37rpx;
-  -webkit-box-flex: 0.5;
-  -webkit-flex: 0.5;
-      -ms-flex: 0.5;
-          flex: 0.5;
 }
 .part-input-unit {
   height: 37rpx;
@@ -204,16 +203,7 @@
   font-weight: 400;
   color: #999999;
   line-height: 37rpx;
-  -webkit-box-flex: 0.1;
-  -webkit-flex: 0.1;
-      -ms-flex: 0.1;
-          flex: 0.1;
-}
-.radioClass {
-  color: green;
-  -webkit-transform: scale(0.8);
-      -ms-transform: scale(0.8);
-          transform: scale(0.8);
+  margin-left: 10rpx;
 }
 /*******************************************/
 .hud-submit-view {

@@ -165,7 +165,9 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var _service = _interopRequireDefault(__webpack_require__(/*! ../../service/service.js */ 26));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {try {var info = gen[key](arg);var value = info.value;} catch (error) {reject(error);return;}if (info.done) {resolve(value);} else {Promise.resolve(value).then(_next, _throw);}}function _asyncToGenerator(fn) {return function () {var self = this,args = arguments;return new Promise(function (resolve, reject) {var gen = fn.apply(self, args);function _next(value) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);}function _throw(err) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);}_next(undefined);});};}var mInput = function mInput() {return __webpack_require__.e(/*! import() | components/m-input */ "components/m-input").then(__webpack_require__.bind(null, /*! @/components/m-input.vue */ 57));};var mList = function mList() {return __webpack_require__.e(/*! import() | components/m-list */ "components/m-list").then(__webpack_require__.bind(null, /*! @/components/m-list.vue */ 64));};var _default =
+
+
+var _service = _interopRequireDefault(__webpack_require__(/*! ../../service/service.js */ 26));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {try {var info = gen[key](arg);var value = info.value;} catch (error) {reject(error);return;}if (info.done) {resolve(value);} else {Promise.resolve(value).then(_next, _throw);}}function _asyncToGenerator(fn) {return function () {var self = this,args = arguments;return new Promise(function (resolve, reject) {var gen = fn.apply(self, args);function _next(value) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);}function _throw(err) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);}_next(undefined);});};}var mInput = function mInput() {return __webpack_require__.e(/*! import() | components/m-input */ "components/m-input").then(__webpack_require__.bind(null, /*! @/components/m-input.vue */ 73));};var mList = function mList() {return __webpack_require__.e(/*! import() | components/m-list */ "components/m-list").then(__webpack_require__.bind(null, /*! @/components/m-list.vue */ 80));};var _default =
 
 {
   components: {
@@ -184,7 +186,20 @@ var _service = _interopRequireDefault(__webpack_require__(/*! ../../service/serv
       isLoadMore: true,
       dataList: [],
       // 用户输入的内容
-      inputContent: '' };
+      inputContent: '',
+      radioList: [
+      {
+        value: '0',
+        name: '全部提交',
+        checked: 'true' },
+      {
+        value: '1',
+        name: '部分提交' }],
+
+
+      current: 0,
+      // 提交页面的属性
+      isHUDShow: true };
 
   },
 
@@ -250,13 +265,30 @@ var _service = _interopRequireDefault(__webpack_require__(/*! ../../service/serv
       this.params.queryKey = this.inputContent;
       this.initData(1);
     },
-    // 点击提交任务
+    // 点击提交任务,弹出选择提交类型页面
     handleSubmitTask: function handleSubmitTask(row) {
-      console.log(row);
+      this.isHUDShow = !this.isHUDShow;
     },
+    // 隐藏提交类型页面
     handleHiddenHUD: function handleHiddenHUD() {
-      console.log('1234');
-    } } };exports.default = _default;
+      console.log('隐藏提交类型页面');
+      this.isHUDShow = !this.isHUDShow;
+    },
+    // 点击radio后方法
+    radioChange: function radioChange(evt) {
+      console.log(evt);
+      for (var i = 0; i < this.radioList.length; i++) {
+        if (this.radioList[i].value === evt.target.value) {
+          this.current = i;
+          break;
+        }
+      }
+      return false;
+    } },
+
+  onLoad: function onLoad() {
+    this.isHUDShow = !this.isHUDShow;
+  } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),

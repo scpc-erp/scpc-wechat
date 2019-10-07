@@ -1,0 +1,44 @@
+
+.content {
+	background-color: #f7f7f7;
+}
+.time-view {
+	margin: 110rpx 20rpx 0rpx 20rpx;
+	background-color: white;
+	border-radius: 10rpx;
+	text-align: center;
+	height: 78rpx;
+	-webkit-box-pack: center;
+	-webkit-justify-content: center;
+	    -ms-flex-pack: center;
+	        justify-content: center;
+	line-height: 78rpx;
+	font-size: 26rpx;
+	font-family: PingFangSC-Semibold, PingFangSC;
+	font-weight: 600;
+	color: rgba(51, 51, 51, 1);
+	line-height: 78rpx;
+}
+.total_task_view {
+	margin-top: 20rpx;
+	line-height: 45rpx;
+	padding: 0 30rpx;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-pack: justify;
+	-webkit-justify-content: space-between;
+	    -ms-flex-pack: justify;
+	        justify-content: space-between;
+	font-size: 32rpx;
+	font-family: PingFangSC-Medium, PingFangSC;
+	font-weight: 500;
+}
+.total-time-text {
+	color: rgba(39, 179, 157, 1);
+}
+.total-task-text {
+	color: rgba(51, 51, 51, 1);
+}
+
