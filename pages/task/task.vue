@@ -41,7 +41,7 @@
 </template>
 
 <script>
-	import mInput from '@/components/m-input.vue'
+	import mInput from '@/components/m-input.vue';
 	import mList from '@/components/m-list.vue';
 	import service from '../../service/service.js';
 

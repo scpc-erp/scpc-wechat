@@ -6,13 +6,72 @@
 					<image src="../../static/img/mine/mine-topInfoBG.png" mode="scaleToFill" class="info-icon"></image>
 				</view>
 				<view class="top-info-rightView">
-					<text class="info-name">纪的腿毛</text>
-					<text class="info-class">CNC</text>
+					<text class="info-name">用户名称</text>
+					<text class="info-class">CNC切割班</text>
 				</view>
 			</view>
-			<view class="top-info-view"> 
+		</view>
+		
+		<view class="bottom-view">
+			<view class="prompt-bg-view">
+				<!-- 额定工时提示 -->
+				<view class="prompt_view">
+					<image src="../../static/img/mine/mine-time.png" mode="" class="left_image"></image>
+					<text class="prompt-text">额定工时</text>
+					<image src="../../static/img/mine/mine-right.png" mode="" class="right_image" @tap="handleTimeButton"></image>
+				</view>
+				<!-- 额定工时内容 -->
+				<view class="content-view">
+					<view class="content-oneView">
+						<text>734</text>
+						<view class="content-text-twoView">
+							<text class="bottom-text">本月</text>
+						</view>
+					</view>
+					<view class="content-twoView">
+						<text >734</text>
+						<view class="content-text-twoView">
+							<text class="bottom-text">本周</text>
+						</view>
+					</view>
+					<view class="content-threeView">
+						<text>734</text>
+						<view class="content-text-twoView">
+							<text class="bottom-text">本日</text>
+						</view>
+					</view> 
+				</view>
 			</view>
-		</view> 
+			<view class="prompt-bg-view">
+				<!-- 我的任务提示 -->
+				<view class="prompt_view">
+					<image src="../../static/img/mine/mine-task.png" mode="" class="left_image"></image>
+					<text class="prompt-text">我的任务</text>					
+					<image src="../../static/img/mine/mine-right.png" mode="" class="right_image" @tap="handleTaskButton"></image>
+				</view>
+				<!-- 我的任务内容 -->
+				<view class="content-view">
+					<view class="content-oneView">
+						<text class="task_text">30</text>
+						<view class="content-text-twoView">
+							<text class="bottom-text">未开始</text>
+						</view>
+					</view>
+					<view class="content-twoView">
+						<text class="task_text">11</text>
+						<view class="content-text-twoView">
+							<text class="bottom-text">进行中</text>
+						</view>
+					</view>
+					<view class="content-threeView">
+						<text class="task_text">111</text>
+						<view class="content-text-twoView">
+							<text class="bottom-text">已完成</text>
+						</view>
+					</view> 
+				</view>
+			</view>
+		</view>
 	</view>
 </template>
 
@@ -21,12 +80,24 @@
 	
 	export default {
 		data() {
-			return { 
+			return {
 				// 为了适配小程序 将顶部背景图转成base64
 				background: img
 			}
 		},
 		methods:{
+			handleTimeButton(){
+				uni.navigateTo({
+					url: '../mine/mineTimes'
+				})
+			},
+			
+			handleTaskButton(){
+				uni.navigateTo({
+					url: '../mine/mineTask'
+				})
+			},
+			
 			onLoad() {
 				let base64 = uni.getFileSystemManager().readFileSync(this.background, 'base64');
 				this.background = 'data:image/png;base64,' + base64;
@@ -40,10 +111,10 @@
 		background-color: #f7f7f7;
 	}
 	
+	// 顶部css
 	.top-view{
 		width: 100%;
-		height: 260upx; 
-		// background: url('../../static/img/mine/mine-topBG.png');
+		height: 260upx;  
 		background-size: cover;
 	}
 	
@@ -93,4 +164,94 @@
 		}
 	}
 	
+	// 底部css
+	.bottom-view{
+		width: 95%;
+		margin: 20upx 20upx 0upx 20upx;
+		
+		.prompt-bg-view{
+			border-radius: 16upx;
+			background-color: white;
+			// height: 238upx; 
+			
+			.prompt_view{
+				margin: 0 30upx 0 30upx;
+				display: flex;
+				justify-content: flex-start;
+				align-items: center;
+				height: 88upx;
+				
+				.left_image{
+					width: 32upx;
+					height:32upx;
+				}
+
+				.prompt-text{
+					font-weight:500;
+					font-size:32upx;
+					line-height:45upx; 
+					margin-left: 20upx; 
+					margin-right: auto;
+					color:rgba(51,51,51,1);
+					font-family:PingFangSC-Medium,PingFangSC;
+				}
+				
+				.right_image{
+					width: 28upx;
+					height:28upx;
+				}
+			} 
+				
+			.prompt_view:nth-child(1){
+				margin-top: 20upx;
+			}
+		}
+		
+		// 底部内容view
+		.content-view{
+			width: 100%;
+			display: flex; 
+			justify-content: center;  
+			
+			font-size:36upx;
+			font-family:PingFangSC-Medium,PingFangSC;
+			font-weight:500;
+			color:rgba(39,179,157,1);
+			line-height:50upx;
+			padding-bottom: 37upx;
+			
+			.content-oneView{
+				flex-grow: 0.3; 
+				align-items: center;
+				display: flex;
+				flex-direction: column;
+			}
+			
+			.content-twoView{ 
+				align-items: center;
+				display: flex;
+				flex-direction: column; 
+				flex-grow: 0.3;
+			}
+			
+			.content-threeView{ 
+				align-items: center;
+				display: flex;
+				flex-direction: column; 
+				flex-grow: 0.3; 
+			}
+			
+			.bottom-text{ 
+				font-size:26upx;
+				font-family:PingFangSC-Regular,PingFangSC;
+				font-weight:400;
+				color:rgba(102,102,102,1);
+				line-height:37upx;
+			}
+			
+			.task_text{
+				color:rgba(72,157,240,1); 
+			}
+		}
+	}
 </style>
