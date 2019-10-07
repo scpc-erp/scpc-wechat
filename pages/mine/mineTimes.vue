@@ -10,12 +10,14 @@
 
 <script> 
 	import topTab from '@/components/wuc-tab/wuc-tab.vue';
+	import datePicker from '@/components/datePicker/simple-datetime-picker.vue';
 	import mList from '@/components/m-list.vue';
 	
 	export default {
 		components: {
 			topTab,
-			mList
+			mList,
+			datePicker
 		},
 		data() {
 			return {
