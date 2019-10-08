@@ -11,11 +11,11 @@
 		<view class="bottom-view">
 			<view class="bottom-view-account">
 				<image class="bottom-view-account-uimg" src="../../static/img/login/Login-icon.png"></image>
-				<m-input class="bottom-view-accountInput" type="text" placeholder="请输入姓名" v-model="account"/>
+				<m-input class="bottom-view-accountInput" type="text" placeholder="请输入姓名" v-model="account" />
 			</view>
 			<view class="bottom-view-pwd">
 				<image class="bottom-view-account-pimg" src="../../static/img/login/Login-qrCode.png"></image>
-				<m-input class="bottom-view-pwdInput" type="password" placeholder="请输入密码" v-model="password"/>
+				<m-input class="bottom-view-pwdInput" type="password" placeholder="请输入密码" v-model="password" />
 			</view>
 			<!-- <button type="primary" class="bottom-view-loginBtn" @tap="handleLoginBtn">登录</button> -->
 			<!-- <button class="bottom-view-loginBtn" @tap="handleLoginBtn" open-type="getUserInfo" @getuserinfo="wxGetUserInfo">登录</button> -->
@@ -32,8 +32,7 @@
 
 	export default {
 		components: {
-			mInput,
-			md5
+			mInput
 		},
 		data() {
 			return {
@@ -42,11 +41,32 @@
 				// 密码
 				password: '123456',
 				// 为了适配小程序 将顶部背景图转成base64
-				background: img
+				background: img,
+				// 用户头像
+				wechatIcon: '',
+				// wechatCode
+				wechatCode: ''
 			}
 		},
 		methods: {
-			async handleLoginBtn() {
+			wxGetUserInfo: function(res) {
+				let _this = this;
+				uni.login({
+					provider: 'weixin',
+					success: function(loginRes) {
+						_this.wechatCode = loginRes.code; 
+						// 获取用户信息
+						uni.getUserInfo({
+							provider: 'weixin',
+							success: function(infoRes) {
+								_this.wechatIcon = infoRes.userInfo.avatarUrl;
+							}
+						});
+					},
+				});
+				_this.updateUserInfo()
+			},
+			async updateUserInfo() {
 				// 名称判断
 				if (this.account.length < 4 || this.account.length == 0) {
 					uni.showToast({
@@ -65,7 +85,7 @@
 					return;
 				}
 
-				const res = await service.login(this.account, md5(this.password),)
+				const res = await service.login(this.account, md5(this.password), this.wechatIcon, this.wechatCode)
 				console.log(res);
 				if (res.errno == 0) {
 					uni.setStorageSync('token', res.data.token)
@@ -73,36 +93,19 @@
 						icon: 'none',
 						title: '登录成功'
 					});
-					// setTimeout(function() {
-					// 	uni.hideToast(),
-					// 		uni.reLaunch({
-					// 			url: '../task/task'
-					// 		})
-					// }, 1500);
+					setTimeout(function() {
+						// uni.hideToast(),
+						// 	uni.reLaunch({
+						// 		url: '../task/task'
+						// 	})
+					}, 1500);
 				} else {
 					uni.showToast({
 						icon: 'none',
 						title: res.errmsg
 					})
 				}
-			},
-			wxGetUserInfo:function(res){
-				console.log(res);
-				if (!res.detail.iv) {
-					uni.showToast({
-						title: "您取消了授权,登录失败",
-						icon: "none"
-					});
-					return false;
-				}
-				console.log('-------用户授权，并获取用户基本信息和加密数据------')
-				console.log(res.detail);
 			}
-		},
-
-		onLoad() {
-			let base64 = uni.getFileSystemManager().readFileSync(this.background, 'base64');
-			this.background = 'data:image/png;base64,' + base64;
 		}
 	}
 </script>
