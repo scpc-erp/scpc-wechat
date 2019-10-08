@@ -25,18 +25,6 @@
 			"style": {
 				"navigationBarTitleText": "我的"
 			}
-		},
-		{
-			"path": "pages/mine/mineTimes",
-			"style": {
-				"navigationBarTitleText": "额定工时"
-			}
-		},
-		{
-			"path": "pages/mine/mineTask",
-			"style": {
-				"navigationBarTitleText": "我的任务"
-			}
 		}
     ],
     "tabBar": {

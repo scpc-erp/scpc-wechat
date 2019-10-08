@@ -148,11 +148,10 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-
 var _md = _interopRequireDefault(__webpack_require__(/*! ../../static/util/md5.js */ 26));
 
 var _LoginBg = _interopRequireDefault(__webpack_require__(/*! ../../static/img/login/Login-bg.png */ 30));
-var _service = _interopRequireDefault(__webpack_require__(/*! ../../static/service/service.js */ 31));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {try {var info = gen[key](arg);var value = info.value;} catch (error) {reject(error);return;}if (info.done) {resolve(value);} else {Promise.resolve(value).then(_next, _throw);}}function _asyncToGenerator(fn) {return function () {var self = this,args = arguments;return new Promise(function (resolve, reject) {var gen = fn.apply(self, args);function _next(value) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);}function _throw(err) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);}_next(undefined);});};}var mInput = function mInput() {return __webpack_require__.e(/*! import() | components/m-input */ "components/m-input").then(__webpack_require__.bind(null, /*! @/components/m-input.vue */ 77));};var _default =
+var _service = _interopRequireDefault(__webpack_require__(/*! ../../static/service/service.js */ 31));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {try {var info = gen[key](arg);var value = info.value;} catch (error) {reject(error);return;}if (info.done) {resolve(value);} else {Promise.resolve(value).then(_next, _throw);}}function _asyncToGenerator(fn) {return function () {var self = this,args = arguments;return new Promise(function (resolve, reject) {var gen = fn.apply(self, args);function _next(value) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);}function _throw(err) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);}_next(undefined);});};}var mInput = function mInput() {return __webpack_require__.e(/*! import() | components/m-input */ "components/m-input").then(__webpack_require__.bind(null, /*! @/components/m-input.vue */ 61));};var _default =
 
 {
   components: {
@@ -161,9 +160,9 @@ var _service = _interopRequireDefault(__webpack_require__(/*! ../../static/servi
   data: function data() {
     return {
       // 账号
-      account: 'admin',
+      account: '',
       // 密码
-      password: '123456',
+      password: '',
       // 为了适配小程序 将顶部背景图转成base64
       background: _LoginBg.default,
       // 用户头像
@@ -190,45 +189,55 @@ var _service = _interopRequireDefault(__webpack_require__(/*! ../../static/servi
 
       _this.updateUserInfo();
     },
-    updateUserInfo: function () {var _updateUserInfo = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee() {var res;return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:if (!(
-
-                this.account.length < 4 || this.account.length == 0)) {_context.next = 3;break;}
+    updateUserInfo: function () {var _updateUserInfo = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee() {var res;return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:
+                console.log(this.account.length);
+                // 名称判断
+                if (!(this.account.length == 0)) {_context.next = 4;break;}
                 uni.showToast({
                   icon: 'none',
-                  title: '请输入正确的名称' });return _context.abrupt("return");case 3:if (!(
+                  title: '请输入正确的名称' });return _context.abrupt("return");case 4:if (!(
 
 
 
 
 
-                this.password.length < 6 || this.password.length == 0)) {_context.next = 6;break;}
+                this.password.length < 6 || this.password.length == 0)) {_context.next = 7;break;}
                 uni.showToast({
                   icon: 'none',
-                  title: '请输入正确的密码' });return _context.abrupt("return");case 6:_context.next = 8;return (
+                  title: '请输入正确的密码' });return _context.abrupt("return");case 7:_context.next = 9;return (
 
 
 
 
-                  _service.default.login(this.account, (0, _md.default)(this.password), this.wechatIcon, this.wechatCode));case 8:res = _context.sent;
+                  _service.default.login(this.account, (0, _md.default)(this.password), this.wechatIcon, this.wechatCode));case 9:res = _context.sent;
                 console.log(res);
                 if (res.errno == 0) {
-                  uni.setStorageSync('token', res.data.token);
+                  // 名称
+                  uni.setStorageSync('user_name', res.data.name);
+                  // 头像
+                  uni.setStorageSync('user_icon', res.data.photo);
+                  // 分组
+                  uni.setStorageSync('user_group', res.data.bzmc);
+                  // token
+                  uni.setStorageSync('user_token', res.data.token);
+
                   uni.showToast({
                     icon: 'none',
                     title: '登录成功' });
 
                   setTimeout(function () {
-                    // uni.hideToast(),
-                    // 	uni.reLaunch({
-                    // 		url: '../task/task'
-                    // 	})
+                    uni.hideToast(),
+                    uni.reLaunch({
+                      url: '../task/task' });
+
                   }, 1500);
+
                 } else {
                   uni.showToast({
                     icon: 'none',
                     title: res.errmsg });
 
-                }case 11:case "end":return _context.stop();}}}, _callee, this);}));function updateUserInfo() {return _updateUserInfo.apply(this, arguments);}return updateUserInfo;}() } };exports.default = _default;
+                }case 12:case "end":return _context.stop();}}}, _callee, this);}));function updateUserInfo() {return _updateUserInfo.apply(this, arguments);}return updateUserInfo;}() } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),

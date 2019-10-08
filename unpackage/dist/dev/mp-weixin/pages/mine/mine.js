@@ -278,13 +278,13 @@ var _mineTopBG = _interopRequireDefault(__webpack_require__(/*! ../../static/img
 //
 //
 var _default = { data: function data() {return { // 为了适配小程序 将顶部背景图转成base64
-      background: _mineTopBG.default };}, methods: { handleTimeButton: function handleTimeButton() {// uni.navigateTo({
+      background: _mineTopBG.default, userName: uni.getStorageSync("user_name"), userIcon: uni.getStorageSync("user_icon"), userGroup: uni.getStorageSync("user_group") };}, methods: { handleTimeButton: function handleTimeButton() {// uni.navigateTo({
       // 	url: '../mine/mineTimes'
       // })
     }, handleTaskButton: function handleTaskButton() {// uni.navigateTo({
       // 	url: '../mine/mineTask'
       // })
-    }, onLoad: function onLoad() {var base64 = uni.getFileSystemManager().readFileSync(this.background, 'base64');this.background = 'data:image/png;base64,' + base64;} } };exports.default = _default;
+    }, onLoad: function onLoad() {this.userName = uni.getStorageSync("user_name");this.userIcon = uni.getStorageSync("user_icon");this.userGroup = uni.getStorageSync("user_group");} } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),

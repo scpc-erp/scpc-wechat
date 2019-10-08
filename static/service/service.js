@@ -6,7 +6,6 @@ const STATE_KEY = 'STATE_KEY';
 /***************************************** 用户 ******************************************/
 // 用户
 const login = function(user_name, user_pwd, user_icon, wechat_code) {
-	// return request.ajax('/user/login',{username: user_name, password:user_pwd})
 	return request.ajax('/wechat/user/login',{username: user_name, password:user_pwd, wxavatar:user_icon, wxcode:wechat_code})
 }
 

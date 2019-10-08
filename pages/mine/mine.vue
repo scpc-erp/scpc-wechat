@@ -3,11 +3,11 @@
 		<view class="top-view" :style="{backgroundImage: 'url(' + background + ')'}">
 			<view class="top-info-imgView">
 				<view class="top-info-leftView">
-					<image src="../../static/img/mine/mine-topInfoBG.png" mode="scaleToFill" class="info-icon"></image>
+					<image v-bind:src="userIcon" mode="scaleToFill" class="info-icon"></image>
 				</view>
 				<view class="top-info-rightView">
-					<text class="info-name">用户名称</text>
-					<text class="info-class">CNC切割班</text>
+					<text class="info-name">{{userName}}</text>
+					<text class="info-class">{{userGroup}}</text>
 				</view>
 			</view>
 		</view>
@@ -82,7 +82,10 @@
 		data() {
 			return {
 				// 为了适配小程序 将顶部背景图转成base64
-				background: img
+				background: img,
+				userName:uni.getStorageSync("user_name"),
+				userIcon: uni.getStorageSync("user_icon"),
+				userGroup:uni.getStorageSync("user_group")
 			}
 		},
 		methods:{
@@ -99,8 +102,9 @@
 			},
 			
 			onLoad() {
-				let base64 = uni.getFileSystemManager().readFileSync(this.background, 'base64');
-				this.background = 'data:image/png;base64,' + base64;
+				this.userName = uni.getStorageSync("user_name")
+				this.userIcon = uni.getStorageSync("user_icon")
+				this.userGroup = uni.getStorageSync("user_group")
 			}
 		}
 	}
