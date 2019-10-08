@@ -129,7 +129,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-
 var _taskDescTopBG = _interopRequireDefault(__webpack_require__(/*! ../../static/img/task/task-desc-topBG.png */ 45));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };} //
 //
 //

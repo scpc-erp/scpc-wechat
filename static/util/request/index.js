@@ -1,5 +1,6 @@
 
-import store from '../../store/index'
+import store from '../../../store/index'
+
 const request = {}
 
 const headers = {
@@ -8,9 +9,7 @@ const headers = {
 }
 const PORT1 = '/baseinfo'
 
-// http://swby-scpc.ngrok.ibanzhuan.cn/api
-// http://192.168.2.184:8360
-const BASE_URL =  process.env.NODE_ENV === 'development' ? 'http://swby-scpc.ngrok.ibanzhuan.cn/api' : 'http://yg-api-new.zydl-tec.cn'
+const BASE_URL = process.env.NODE_ENV === 'development' ? 'http://192.168.0.116:8360' : 'http://swby-scpc.ngrok.ibanzhuan.cn/api'
 
 request.ajax = (url, data, method = 'POST',  power) => {
 /*     

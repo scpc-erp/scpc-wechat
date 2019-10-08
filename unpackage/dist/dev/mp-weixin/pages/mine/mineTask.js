@@ -122,7 +122,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var topTab = function topTab() {return __webpack_require__.e(/*! import() | components/wuc-tab/wuc-tab */ "components/wuc-tab/wuc-tab").then(__webpack_require__.bind(null, /*! @/components/wuc-tab/wuc-tab.vue */ 87));};var mList = function mList() {return __webpack_require__.e(/*! import() | components/m-list */ "components/m-list").then(__webpack_require__.bind(null, /*! @/components/m-list.vue */ 80));};var _default =
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var topTab = function topTab() {return __webpack_require__.e(/*! import() | components/wuc-tab/wuc-tab */ "components/wuc-tab/wuc-tab").then(__webpack_require__.bind(null, /*! @/components/wuc-tab/wuc-tab.vue */ 91));};var mList = function mList() {return __webpack_require__.e(/*! import() | components/m-list */ "components/m-list").then(__webpack_require__.bind(null, /*! @/components/m-list.vue */ 84));};var _default =
 
 
 

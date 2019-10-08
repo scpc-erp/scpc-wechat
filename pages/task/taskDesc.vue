@@ -4,8 +4,7 @@
 	</view>
 </template>
 
-<script>
-	
+<script> 
 	import img from '../../static/img/task/task-desc-topBG.png';
 	export default {
 		components:{

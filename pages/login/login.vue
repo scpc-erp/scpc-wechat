@@ -18,19 +18,22 @@
 				<m-input class="bottom-view-pwdInput" type="password" placeholder="请输入密码" v-model="password"/>
 			</view>
 			<!-- <button type="primary" class="bottom-view-loginBtn" @tap="handleLoginBtn">登录</button> -->
-			<button class="bottom-view-loginBtn" @tap="handleLoginBtn" open-type="getUserInfo" @getuserinfo="wxGetUserInfo">登录</button>
+			<!-- <button class="bottom-view-loginBtn" @tap="handleLoginBtn" open-type="getUserInfo" @getuserinfo="wxGetUserInfo">登录</button> -->
+			<button class="bottom-view-loginBtn" open-type="getUserInfo" @getuserinfo="wxGetUserInfo">登录</button>
 		</view>
 	</view>
 </template>
 
 <script>
+	import md5 from '../../static/util/md5.js';
 	import mInput from '@/components/m-input.vue';
-	import service from '../../service/service.js';
 	import img from '../../static/img/login/Login-bg.png';
+	import service from '../../static/service/service.js';
 
 	export default {
 		components: {
-			mInput
+			mInput,
+			md5
 		},
 		data() {
 			return {
@@ -62,7 +65,7 @@
 					return;
 				}
 
-				const res = await service.login(this.account, this.password)
+				const res = await service.login(this.account, md5(this.password),)
 				console.log(res);
 				if (res.errno == 0) {
 					uni.setStorageSync('token', res.data.token)
@@ -70,19 +73,19 @@
 						icon: 'none',
 						title: '登录成功'
 					});
-					setTimeout(function() {
-						uni.hideToast(),
-							uni.reLaunch({
-								url: '../task/task'
-							})
-					}, 2000);
+					// setTimeout(function() {
+					// 	uni.hideToast(),
+					// 		uni.reLaunch({
+					// 			url: '../task/task'
+					// 		})
+					// }, 1500);
 				} else {
 					uni.showToast({
 						icon: 'none',
-						title: res.errMsg
+						title: res.errmsg
 					})
 				}
-			}, 
+			},
 			wxGetUserInfo:function(res){
 				console.log(res);
 				if (!res.detail.iv) {
@@ -100,33 +103,6 @@
 		onLoad() {
 			let base64 = uni.getFileSystemManager().readFileSync(this.background, 'base64');
 			this.background = 'data:image/png;base64,' + base64;
-		},
-
-		onShow() {
-			// uni.getProvider({
-			// 	service: 'oauth',
-			// 	success: function(res) {
-			// 		console.log(res.provider);
-			// 		//支持微信、qq和微博等
-			// 		if (~res.provider.indexOf('weixin')) {
-			// 			uni.login({
-			// 				provider: 'weixin',
-			// 				success: function(loginRes) {
-			// 					console.log('-------获取openid(unionid)-----');
-			// 					console.log(JSON.stringify(loginRes));
-			// 					// 获取用户信息
-			// 					uni.getUserInfo({
-			// 						provider: 'weixin',
-			// 						success: function(infoRes) {
-			// 							console.log('-------获取微信用户所有-----');
-			// 							console.log(JSON.stringify(infoRes.userInfo));
-			// 						}
-			// 					});
-			// 				}
-			// 			});
-			// 		}
-			// 	}
-			// })
 		}
 	}
 </script>
