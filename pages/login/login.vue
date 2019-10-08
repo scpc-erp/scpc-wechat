@@ -11,14 +11,13 @@
 		<view class="bottom-view">
 			<view class="bottom-view-account">
 				<image class="bottom-view-account-uimg" src="../../static/img/login/Login-icon.png"></image>
-				<m-input class="bottom-view-accountInput" type="text" placeholder="请输入姓名" v-model="account" />
+				<input v-model="account" class="bottom-view-accountInput" type="text" value="" placeholder="请输入姓名" />
 			</view>
 			<view class="bottom-view-pwd">
-				<image class="bottom-view-account-pimg" src="../../static/img/login/Login-qrCode.png"></image>
+				<image class="bottom-view-account-pimg" src="../../static/img/login/Login-qrCode.png" mode="scaleToFill"></image>
 				<m-input class="bottom-view-pwdInput" type="password" placeholder="请输入密码" v-model="password" />
 			</view> 
-			<!-- <button class="bottom-view-loginBtn" @tap="handleLoginBtn" open-type="getUserInfo" @getuserinfo="wxGetUserInfo">登录</button> -->
-			<button class="bottom-view-loginBtn" open-type="getUserInfo" @getuserinfo="wxGetUserInfo">登录</button>
+			<button class="bottom-view-loginBtn" @tap="updateUserInfo" open-type="getUserInfo" @getuserinfo="wxGetUserInfo">登录</button>
 		</view>
 	</view>
 </template>
@@ -49,6 +48,7 @@
 		},
 		methods: {
 			wxGetUserInfo: function(res) {
+				console.log("123");
 				let _this = this;
 				uni.login({
 					provider: 'weixin',
@@ -66,6 +66,7 @@
 				_this.updateUserInfo()
 			},
 			async updateUserInfo() {
+				console.log(this.account)
 				console.log(this.account.length)
 				// 名称判断
 				if (this.account.length == 0) {
@@ -77,7 +78,7 @@
 				}
 
 				// 密码判断
-				if (this.password.length < 6 || this.password.length == 0) {
+				if (this.password.length == 0) {
 					uni.showToast({
 						icon: 'none',
 						title: '请输入正确的密码'
@@ -86,7 +87,6 @@
 				}
 
 				const res = await service.login(this.account, md5(this.password), this.wechatIcon, this.wechatCode)
-				console.log(res);
 				if (res.errno == 0) {
 					// 名称
 					uni.setStorageSync('user_name', res.data.name)
@@ -96,7 +96,6 @@
 					uni.setStorageSync('user_group', res.data.bzmc)
 					// token
 					uni.setStorageSync('user_token', res.data.token)
-					
 					uni.showToast({
 						icon: 'none',
 						title: '登录成功'
@@ -107,7 +106,6 @@
 								url: '../task/task'
 							})
 					}, 1500);
-					
 				} else {
 					uni.showToast({
 						icon: 'none',
@@ -170,15 +168,16 @@
 	}
 
 	.bottom-view-account-uimg {
-		width: 32upx;
-		height: 32upx;
+		width: 45upx;
+		height: 35upx;
 		margin-left: 66upx;
 	}
 
 	.bottom-view-accountInput {
+		width: 100%;
 		font-size: 34upx;
 		font-weight: 400;
-		margin: 0 66upx 0 26upx;
+		margin: 0 66upx 0 37upx;
 		color: rgba(51, 51, 51, 1);
 		border-bottom: 1upx solid #EEEEEE;
 	}
@@ -193,8 +192,8 @@
 	}
 
 	.bottom-view-account-pimg {
-		width: 32upx;
-		height: 32upx;
+		width: 45upx;
+		height: 40upx;
 		margin-left: 66upx;
 	}
 

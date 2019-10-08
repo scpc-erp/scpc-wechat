@@ -11356,7 +11356,8 @@ var headers = {
 
 var PORT1 = '/baseinfo';
 
-var BASE_URL =  true ? 'http://192.168.0.116:8360' : undefined;
+
+var BASE_URL =  true ? 'http://192.168.2.184:8360' : undefined;
 
 request.ajax = function (url, data) {var method = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 'POST';var power = arguments.length > 3 ? arguments[3] : undefined;
   /*     

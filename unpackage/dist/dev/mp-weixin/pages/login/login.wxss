@@ -51,14 +51,15 @@
 	        align-items: center;
 }
 .bottom-view-account-uimg {
-	width: 32rpx;
-	height: 32rpx;
+	width: 45rpx;
+	height: 35rpx;
 	margin-left: 66rpx;
 }
 .bottom-view-accountInput {
+	width: 100%;
 	font-size: 34rpx;
 	font-weight: 400;
-	margin: 0 66rpx 0 26rpx;
+	margin: 0 66rpx 0 37rpx;
 	color: rgba(51, 51, 51, 1);
 	border-bottom: 1rpx solid #EEEEEE;
 }
@@ -80,8 +81,8 @@
 	        align-items: center;
 }
 .bottom-view-account-pimg {
-	width: 32rpx;
-	height: 32rpx;
+	width: 45rpx;
+	height: 40rpx;
 	margin-left: 66rpx;
 }
 .bottom-view-pwdInput {
