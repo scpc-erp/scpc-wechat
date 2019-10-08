@@ -2,8 +2,8 @@
 	<view class="content">
 		<view class="top-view" :style="{backgroundImage: 'url(' + background + ')'}">
 			<view class="top-view-content">
-				<!-- <view class="top-view-content-one">三维博弈ERP</view> -->
-				<view class="top-view-content-one">矿山易购Boss端</view>
+				<view class="top-view-content-one">三维博弈ERP</view>
+				<!-- <view class="top-view-content-one">矿山易购Boss端</view> -->
 				<image class="top-view-content-two" src="../../static/img/login/Login-cover.png"></image>
 				<view class="top-view-content-three">实时生产跟踪</view>
 			</view>
@@ -11,13 +11,12 @@
 		<view class="bottom-view">
 			<view class="bottom-view-account">
 				<image class="bottom-view-account-uimg" src="../../static/img/login/Login-icon.png"></image>
-				<m-input class="bottom-view-accountInput" type="text" placeholder="请输入姓名" v-model="account"/>
+				<m-input class="bottom-view-accountInput" type="text" placeholder="请输入姓名" v-model="account" />
 			</view>
 			<view class="bottom-view-pwd">
 				<image class="bottom-view-account-pimg" src="../../static/img/login/Login-qrCode.png"></image>
-				<m-input class="bottom-view-pwdInput" type="password" placeholder="请输入密码" v-model="password"/>
-			</view>
-			<!-- <button type="primary" class="bottom-view-loginBtn" @tap="handleLoginBtn">登录</button> -->
+				<m-input class="bottom-view-pwdInput" type="password" placeholder="请输入密码" v-model="password" />
+			</view> 
 			<!-- <button class="bottom-view-loginBtn" @tap="handleLoginBtn" open-type="getUserInfo" @getuserinfo="wxGetUserInfo">登录</button> -->
 			<button class="bottom-view-loginBtn" open-type="getUserInfo" @getuserinfo="wxGetUserInfo">登录</button>
 		</view>
@@ -32,23 +31,44 @@
 
 	export default {
 		components: {
-			mInput,
-			md5
+			mInput
 		},
 		data() {
 			return {
 				// 账号
-				account: 'admin',
+				account: '',
 				// 密码
-				password: '123456',
+				password: '',
 				// 为了适配小程序 将顶部背景图转成base64
-				background: img
+				background: img,
+				// 用户头像
+				wechatIcon: '',
+				// wechatCode
+				wechatCode: ''
 			}
 		},
 		methods: {
-			async handleLoginBtn() {
+			wxGetUserInfo: function(res) {
+				let _this = this;
+				uni.login({
+					provider: 'weixin',
+					success: function(loginRes) {
+						_this.wechatCode = loginRes.code; 
+						// 获取用户信息
+						uni.getUserInfo({
+							provider: 'weixin',
+							success: function(infoRes) {
+								_this.wechatIcon = infoRes.userInfo.avatarUrl;
+							}
+						});
+					},
+				});
+				_this.updateUserInfo()
+			},
+			async updateUserInfo() {
+				console.log(this.account.length)
 				// 名称判断
-				if (this.account.length < 4 || this.account.length == 0) {
+				if (this.account.length == 0) {
 					uni.showToast({
 						icon: 'none',
 						title: '请输入正确的名称'
@@ -65,44 +85,36 @@
 					return;
 				}
 
-				const res = await service.login(this.account, md5(this.password),)
+				const res = await service.login(this.account, md5(this.password), this.wechatIcon, this.wechatCode)
 				console.log(res);
 				if (res.errno == 0) {
-					uni.setStorageSync('token', res.data.token)
+					// 名称
+					uni.setStorageSync('user_name', res.data.name)
+					// 头像
+					uni.setStorageSync('user_icon', res.data.photo)
+					// 分组
+					uni.setStorageSync('user_group', res.data.bzmc)
+					// token
+					uni.setStorageSync('user_token', res.data.token)
+					
 					uni.showToast({
 						icon: 'none',
 						title: '登录成功'
 					});
-					// setTimeout(function() {
-					// 	uni.hideToast(),
-					// 		uni.reLaunch({
-					// 			url: '../task/task'
-					// 		})
-					// }, 1500);
+					setTimeout(function() {
+						uni.hideToast(),
+							uni.reLaunch({
+								url: '../task/task'
+							})
+					}, 1500);
+					
 				} else {
 					uni.showToast({
 						icon: 'none',
 						title: res.errmsg
 					})
 				}
-			},
-			wxGetUserInfo:function(res){
-				console.log(res);
-				if (!res.detail.iv) {
-					uni.showToast({
-						title: "您取消了授权,登录失败",
-						icon: "none"
-					});
-					return false;
-				}
-				console.log('-------用户授权，并获取用户基本信息和加密数据------')
-				console.log(res.detail);
 			}
-		},
-
-		onLoad() {
-			let base64 = uni.getFileSystemManager().readFileSync(this.background, 'base64');
-			this.background = 'data:image/png;base64,' + base64;
 		}
 	}
 </script>
