@@ -147,7 +147,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-
 var _md = _interopRequireDefault(__webpack_require__(/*! ../../static/util/md5.js */ 26));
 
 var _LoginBg = _interopRequireDefault(__webpack_require__(/*! ../../static/img/login/Login-bg.png */ 30));
@@ -173,6 +172,7 @@ var _service = _interopRequireDefault(__webpack_require__(/*! ../../static/servi
   },
   methods: {
     wxGetUserInfo: function wxGetUserInfo(res) {
+      console.log("123");
       var _this = this;
       uni.login({
         provider: 'weixin',
@@ -190,27 +190,27 @@ var _service = _interopRequireDefault(__webpack_require__(/*! ../../static/servi
       _this.updateUserInfo();
     },
     updateUserInfo: function () {var _updateUserInfo = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee() {var res;return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:
+                console.log(this.account);
                 console.log(this.account.length);
                 // 名称判断
-                if (!(this.account.length == 0)) {_context.next = 4;break;}
+                if (!(this.account.length == 0)) {_context.next = 5;break;}
                 uni.showToast({
                   icon: 'none',
-                  title: '请输入正确的名称' });return _context.abrupt("return");case 4:if (!(
+                  title: '请输入正确的名称' });return _context.abrupt("return");case 5:if (!(
 
 
 
 
 
-                this.password.length < 6 || this.password.length == 0)) {_context.next = 7;break;}
+                this.password.length == 0)) {_context.next = 8;break;}
                 uni.showToast({
                   icon: 'none',
-                  title: '请输入正确的密码' });return _context.abrupt("return");case 7:_context.next = 9;return (
+                  title: '请输入正确的密码' });return _context.abrupt("return");case 8:_context.next = 10;return (
 
 
 
 
-                  _service.default.login(this.account, (0, _md.default)(this.password), this.wechatIcon, this.wechatCode));case 9:res = _context.sent;
-                console.log(res);
+                  _service.default.login(this.account, (0, _md.default)(this.password), this.wechatIcon, this.wechatCode));case 10:res = _context.sent;
                 if (res.errno == 0) {
                   // 名称
                   uni.setStorageSync('user_name', res.data.name);
@@ -220,7 +220,6 @@ var _service = _interopRequireDefault(__webpack_require__(/*! ../../static/servi
                   uni.setStorageSync('user_group', res.data.bzmc);
                   // token
                   uni.setStorageSync('user_token', res.data.token);
-
                   uni.showToast({
                     icon: 'none',
                     title: '登录成功' });
@@ -231,7 +230,6 @@ var _service = _interopRequireDefault(__webpack_require__(/*! ../../static/servi
                       url: '../task/task' });
 
                   }, 1500);
-
                 } else {
                   uni.showToast({
                     icon: 'none',
