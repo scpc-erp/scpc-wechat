@@ -1,33 +1,35 @@
 <template>
 	<view class="content">
-		<view class="hud-view" @tap='handleHiddenHUD' v-show="isHUDShow">
+		<uni-popup  ref="popup" :show="isHUDShow" @change="closePopup">
 			<view class="hud-content-view">
 				<view class="order-info">
-					<view class="order-num">QR-00393</view>
-					<view class="order-name">支架 29K-00-21</view>
+					<view class="order-num">{{activeRow.SSDD_TEXT}}</view>
+					<view class="order-name">{{activeRow.BOMID_TEXT}}</view>
 				</view>
 				
 				<radio-group @change="radioChange">
 					<view class="hud-submit-allView" v-for="(item, index) in radioList" :key="item.value">
 						<view class="all-prompt">
-							<radio class="radioClass" color="#27B39D" :value="item.name" :checked="index === current"/>
+							<radio class="radioClass" color="#27B39D" :value="item.value" :checked="index === current"/>
 							<text>{{item.name}}</text>
 						</view>
-						<view class="part-input-view">
-							<view class="part-input-prompt">完成件数</view>
-							<view class="part-input-right">
-								<view class="part-input">1000</view>
-								<view class="part-input-unit">件</view>
-							</view>
+					</view>
+					<view class="part-input-view">
+						<view class="part-input-prompt">完成件数</view>
+						<view class="part-input-right">
+							<view v-if="current == 0" class="part-input">{{activeRow.JGSL}}</view>
+							<uni-number-box v-else :min="0" :max="activeRow.JGSL"></uni-number-box>
+							<view class="part-input-unit">件</view>
 						</view>
 					</view>
 				</radio-group>
 				
 				<view class="hud-submit-view">
-					<button class="hud-submit-btn">确认提交</button>
+					<button @click="onSubmit" class="hud-submit-btn">确认提交</button>
 				</view>
 			</view>
-		</view>
+		</uni-popup>
+		
 		<view class="top-view">
 			<view class="search-BG-view">
 				<image src="../../static/img/task/task-search.png" mode="" class="search-img"></image>
@@ -35,20 +37,25 @@
 			</view>
 		</view>
 		<view class="content-list">
-			<mList class="list" v-for="(item, key) in dataList" @handleSubmitTask="handleSubmitTask" :key="key" :item="item"></mList>
+			<mList class="list" v-for="(item, key) in dataList" @handleSubmitTask="handleSubmitTask(item)" :key="key" :item="item"></mList>
 		</view>
 	</view>
 </template>
 
 <script>
 	import mInput from '@/components/m-input.vue';
+	import uniPopup from "@/components/uni-popup/uni-popup.vue"
 	import mList from '@/components/m-list.vue';
+	import uniNumberBox from "@/components/uni-number-box/uni-number-box.vue"
+	
 	import service from '../../static/service/service.js';
 
 	export default {
 		components: {
 			mList,
-			mInput
+			mInput,
+			uniPopup,
+			uniNumberBox
 		},
 		data() {
 			return {
@@ -57,12 +64,14 @@
 					'tableId': "010401",
 					'pageNumber': 1,
 					'pageSize': 10,
-					'queryKey': "搜索"
+					'queryKey': ""
 				},
 				isLoadMore: true,
+				activeRow: {},
 				dataList: [],
 				// 用户输入的内容
 				inputContent: '',
+				jgsl: 0,
 				radioList:[
 					{
 						value:'0',
@@ -75,7 +84,7 @@
 				],
 				current: 0,
 				// 提交页面的属性
-				isHUDShow:true
+				isHUDShow:false
 			}
 		},
 
@@ -143,27 +152,26 @@
 			},
 			// 点击提交任务,弹出选择提交类型页面
 			handleSubmitTask(row) {
-				this.isHUDShow = !this.isHUDShow;
-			},
-			// 隐藏提交类型页面
-			handleHiddenHUD() {
-				console.log('隐藏提交类型页面');
-				this.isHUDShow = !this.isHUDShow;
+				this.activeRow = row
+				this.jgsl = this.activeRow.JGSL
+				this.isHUDShow = true;
 			},
 			// 点击radio后方法
 			radioChange: function(evt) {
-				console.log(evt);
-				for (let i = 0; i < this.radioList.length; i++) {
-					if (this.radioList[i].value === evt.target.value) {
-						this.current = i;
-						break;
-					}
+				this.current = evt.detail.value
+			},
+			//点击提交按钮调用方法
+			async onSubmit(){
+				console.log(this.activeRow)	
+				let params = {
+					gyid: this.activeRow.ID,
+					jgjs: this.jgsl
 				}
-				return false;
+				let res = await service.submitTask(params)
+			},
+			closePopup(val) {
+				this.isHUDShow = val.show
 			}
-		},
-		onLoad() {
-			this.isHUDShow = !this.isHUDShow;
 		}
 	}
 </script>
@@ -222,16 +230,8 @@
 		width: 100%;
 	}
 
-	.hud-view {
-		width: 100%;
-		height: 100%;
-		position: fixed;
-		background: rgba(0, 0, 0, 0.5);
-		z-index: 9999;
-	}
-
 	.hud-content-view {
-		margin: 50% 50upx 0 50upx;
+		width: 80vw;
 		border-radius: 15upx;
 		background-color: white;
 		display: flex;
@@ -363,6 +363,7 @@
 
 	.hud-submit-btn {
 		width: 100%;
+		cursor: pointer;
 		color: white;
 		background: #27B39D;
 		font-size: 32upx;

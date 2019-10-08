@@ -10,12 +10,12 @@
 			</view>
 			<view class="row-three">
 				<view class="">
-					<text class="order-time">{{item.BZGS}}</text>
 					<text class="order-time-prompt">工时</text>
+					<text class="order-num">{{item.BZGS}}</text>
 				</view>
 				<view class="">
-					<text class="order-num">{{item.JGSL}}</text>
 					<text class="order-num-prompt">数量</text>
+					<text class="order-num">x{{item.JGSL}}</text>
 				</view>
 			</view>
 			<view class="row-four">
@@ -157,7 +157,7 @@
 	}
 	
 	.order-num{
-		margin-left:60upx;
+		margin-left:10upx;
 		height:56upx;
 		font-size:40upx;
 		font-family:PingFangSC-Medium,PingFangSC;
@@ -167,6 +167,7 @@
 	}
 	
 	.order-num-prompt{
+		margin-left:60upx;
 		height:56upx;
 		font-size:24upx;
 		font-family:PingFangSC-Medium,PingFangSC;

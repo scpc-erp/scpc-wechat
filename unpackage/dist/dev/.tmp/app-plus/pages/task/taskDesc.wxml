@@ -1,2 +1,0 @@
-<import src="./taskDesc.vue.wxml" />
-    <template is="309c644e" data="{{ ...$root['0'], $root }}"/>

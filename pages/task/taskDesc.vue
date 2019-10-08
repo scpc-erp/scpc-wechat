@@ -17,8 +17,6 @@
 			}
 		},
 		onLoad() {
-			let base64 = uni.getFileSystemManager().readFileSync(this.background, 'base64');
-			this.background = 'data:image/png;base64,' + base64;
 		}
 	}
 	

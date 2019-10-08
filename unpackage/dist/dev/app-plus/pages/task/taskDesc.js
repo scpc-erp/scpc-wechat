@@ -1,2 +1,0 @@
-setCssToHead([".",[1],"top-view{ width: 100%; height: ",[0,318],"; background-size: cover; }\n",],undefined,{path:"./pages/task/taskDesc.wxss"})();
-document.dispatchEvent(new CustomEvent("generateFuncReady", { detail: { generateFunc: $gwx('./pages/task/taskDesc.wxml') } }));

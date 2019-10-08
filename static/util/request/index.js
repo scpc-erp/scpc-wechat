@@ -35,7 +35,6 @@ request.ajax = (url, data, method = 'POST',  power) => {
             // }`
 			const token = uni.getStorageSync('token');
 			if (token) {
-				console.log('token==='+token);
 				headers['token'] = token;
 			}
             break;
@@ -48,8 +47,6 @@ request.ajax = (url, data, method = 'POST',  power) => {
         dataType: 'json',
         header: headers
     }).then(res => {
-		console.log(res);
-		console.log(res[1].data.errno);
         if (res[1].data.errno || res[1].data.errno == 0) {
             return res[1].data
         } else {

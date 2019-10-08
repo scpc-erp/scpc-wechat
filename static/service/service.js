@@ -20,9 +20,14 @@ const taskListSearch = function (params) {
 	return request.ajax('/tableData/queryTableData', params, 'GET')
 }
 
+// 提交任务
+const submitTask = function (params) {
+	return request.ajax('/scglxt/gygx/overWork', params)
+}
 // 获取客户列表
 export default {
 	login,
 	taskList,
-	taskListSearch
+	taskListSearch,
+	submitTask
 }
