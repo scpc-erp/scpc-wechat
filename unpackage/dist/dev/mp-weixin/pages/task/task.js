@@ -292,12 +292,11 @@ var _service = _interopRequireDefault(__webpack_require__(/*! ../../static/servi
     },
     //点击提交按钮调用方法
     onSubmit: function () {var _onSubmit = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee2() {var params, res;return _regenerator.default.wrap(function _callee2$(_context2) {while (1) {switch (_context2.prev = _context2.next) {case 0:
-                console.log(this.activeRow);
                 params = {
                   gyid: this.activeRow.ID,
-                  jgjs: this.jgsl };_context2.next = 4;return (
+                  jgjs: this.jgsl };_context2.next = 3;return (
 
-                  _service.default.submitTask(params));case 4:res = _context2.sent;
+                  _service.default.submitTask(params));case 3:res = _context2.sent;
                 if (res.errno == 0) {
                   uni.showToast({
                     title: res.errmsg });
@@ -308,10 +307,13 @@ var _service = _interopRequireDefault(__webpack_require__(/*! ../../static/servi
                   uni.showToast({
                     title: res.errmsg });
 
-                }case 6:case "end":return _context2.stop();}}}, _callee2, this);}));function onSubmit() {return _onSubmit.apply(this, arguments);}return onSubmit;}(),
+                }case 5:case "end":return _context2.stop();}}}, _callee2, this);}));function onSubmit() {return _onSubmit.apply(this, arguments);}return onSubmit;}(),
 
     closePopup: function closePopup(val) {
       this.isHUDShow = val.show;
+    },
+    numberChange: function numberChange(val) {
+      this.jgsl = val;
     } } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
