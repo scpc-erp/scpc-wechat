@@ -1,0 +1,10 @@
+{
+  "navigationBarTitleText": "今日任务",
+  "enablePullDownRefresh": true,
+  "usingComponents": {
+    "m-list": "/components/m-list",
+    "m-input": "/components/m-input",
+    "uni-popup": "/components/uni-popup/uni-popup",
+    "uni-number-box": "/components/uni-number-box/uni-number-box"
+  }
+}

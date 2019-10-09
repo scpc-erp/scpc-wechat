@@ -15,8 +15,6 @@
 				// 为了适配小程序 将顶部背景图转成base64
 				background: img
 			}
-		},
-		onLoad() {
 		}
 	}
 	

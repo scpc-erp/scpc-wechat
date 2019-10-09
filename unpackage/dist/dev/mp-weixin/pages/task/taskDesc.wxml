@@ -1,0 +1,1 @@
+<view class="content"><view class="top-view" style="{{'background-image:'+('url('+background+')')+';'}}"></view></view>
