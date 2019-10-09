@@ -13,13 +13,13 @@
 							<radio class="radioClass" color="#27B39D" :value="item.value" :checked="index === current"/>
 							<text>{{item.name}}</text>
 						</view>
-					</view>
+					</view>	
 					<view class="part-input-view">
-						<view class="part-input-prompt">完成件数</view>
+						<view class="part-input-prompt"  :style="{'line-height':partViewHeight+'rpx'}">完成件数</view>
 						<view class="part-input-right">
 							<view v-if="current == 0" class="part-input">{{activeRow.JGSL}}</view>
 							<uni-number-box v-else :min="0" :max="activeRow.JGSL"></uni-number-box>
-							<view class="part-input-unit">件</view>
+							<view class="part-input-unit"  :style="{'line-height':partViewHeight+'rpx'}">件</view>
 						</view>
 					</view>
 				</radio-group>
@@ -43,12 +43,11 @@
 </template>
 
 <script>
-	import mInput from '@/components/m-input.vue';
-	import uniPopup from "@/components/uni-popup/uni-popup.vue"
 	import mList from '@/components/m-list.vue';
-	import uniNumberBox from "@/components/uni-number-box/uni-number-box.vue"
-	
+	import mInput from '@/components/m-input.vue';
 	import service from '../../static/service/service.js';
+	import uniPopup from "@/components/uni-popup/uni-popup.vue";
+	import uniNumberBox from "@/components/uni-number-box/uni-number-box.vue";
 
 	export default {
 		components: {
@@ -84,7 +83,9 @@
 				],
 				current: 0,
 				// 提交页面的属性
-				isHUDShow:false
+				isHUDShow:false,
+				// 提交按钮高度值
+				partViewHeight:37
 			}
 		},
 
@@ -116,10 +117,10 @@
 		},
 		methods: {
 			async initData(type) {
-				// type==0 列表刷新 params不包含queryKey 
-				// type==1 搜索刷新 params包含queryKey 
+				// type==0 列表刷新 params不包含queryKey
+				// type==1 搜索刷新 params包含queryKey
 				if (type == 0) {
-					let res = await service.taskList(this.params)
+					let res = await service.taskList(this.params);
 					if (res.errno == 0) {
 						if (this.params.pageNumber == 1) {
 							this.dataList = res.data.data;
@@ -131,7 +132,7 @@
 						}
 					}
 				} else {
-					let res = await service.taskListSearch(this.params)
+					let res = await service.taskListSearch(this.params);
 					if (res.errno == 0) {
 						if (this.params.pageNumber == 1) {
 							this.dataList = res.data.data;
@@ -158,16 +159,32 @@
 			},
 			// 点击radio后方法
 			radioChange: function(evt) {
-				this.current = evt.detail.value
+				this.current = evt.detail.value 
+				if (evt.detail.value == 0) { 
+					this.partViewHeight = 37;
+				} else {
+					this.partViewHeight = 70;
+				}
 			},
 			//点击提交按钮调用方法
 			async onSubmit(){
-				console.log(this.activeRow)	
+				console.log(this.activeRow)
 				let params = {
 					gyid: this.activeRow.ID,
 					jgjs: this.jgsl
 				}
-				let res = await service.submitTask(params)
+				let res = await service.submitTask(params);
+				if (res.errno == 0) {
+					uni.showToast({
+						title: res.errmsg
+					});
+					this.isHUDShow = false
+					this.initData();
+				} else {
+					uni.showToast({
+						title: res.errmsg
+					});
+				}
 			},
 			closePopup(val) {
 				this.isHUDShow = val.show
@@ -325,6 +342,10 @@
 		display: flex;
 		justify-content: flex-end;
 	}
+	
+	uni-number-box {
+		margin-top: 0upx;
+	}
 
 	.part-input-prompt {
 		height: 37upx;
@@ -332,7 +353,11 @@
 		font-family: PingFangSC-Regular, PingFangSC;
 		font-weight: 400;
 		color: rgba(153, 153, 153, 1);
+		
+		// 用户点击全部更新后撑开的高度为37upx
+		// 用户点击部分更新后撑开的高度为70upx
 		line-height: 37upx; 
+		// line-height: 70upx; 
 	}
 
 	.part-input {
@@ -341,7 +366,7 @@
 		font-family: PingFangSC-Regular, PingFangSC;
 		font-weight: 400;
 		color: rgba(153, 153, 153, 1);
-		line-height: 37upx; 
+		line-height: 37upx;
 	}
 
 	.part-input-unit {
@@ -350,8 +375,12 @@
 		font-family: PingFangSC-Regular, PingFangSC;
 		font-weight: 400;
 		color: rgba(153, 153, 153, 1);
-		line-height: 37upx; 
 		margin-left: 10upx;
+		
+		// 用户点击全部更新后撑开的高度为37upx
+		// 用户点击部分更新后撑开的高度为70upx
+		line-height: 37upx;
+		// line-height: 70upx; 
 	}
 
 	/*******************************************/

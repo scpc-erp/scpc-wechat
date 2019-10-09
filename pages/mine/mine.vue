@@ -23,33 +23,32 @@
 				<!-- 额定工时内容 -->
 				<view class="content-view">
 					<view class="content-oneView">
-						<text>734</text>
+						<text>{{month}}</text>
 						<view class="content-text-twoView">
 							<text class="bottom-text">本月</text>
 						</view>
 					</view>
 					<view class="content-twoView">
-						<text >734</text>
+						<text >{{week}}</text>
 						<view class="content-text-twoView">
 							<text class="bottom-text">本周</text>
 						</view>
 					</view>
 					<view class="content-threeView">
-						<text>734</text>
+						<text>{{day}}</text>
 						<view class="content-text-twoView">
 							<text class="bottom-text">本日</text>
 						</view>
 					</view> 
 				</view>
 			</view>
-			<view class="prompt-bg-view">
-				<!-- 我的任务提示 -->
+
+<!-- 			<view class="prompt-bg-view"> 
 				<view class="prompt_view">
 					<image src="../../static/img/mine/mine-task.png" mode="" class="left_image"></image>
 					<text class="prompt-text">我的任务</text>					
-					<!-- <image src="../../static/img/mine/mine-right.png" mode="" class="right_image" @tap="handleTaskButton"></image> -->
-				</view>
-				<!-- 我的任务内容 -->
+					<image src="../../static/img/mine/mine-right.png" mode="" class="right_image" @tap="handleTaskButton"></image>
+				</view> 
 				<view class="content-view">
 					<view class="content-oneView">
 						<text class="task_text">30</text>
@@ -70,13 +69,14 @@
 						</view>
 					</view> 
 				</view>
-			</view>
+			</view> -->
 		</view>
 	</view>
 </template>
 
 <script>
 	import img from '../../static/img/mine/mine-topBG.png';
+	import service from '../../static/service/service.js';
 	
 	export default {
 		data() {
@@ -85,16 +85,20 @@
 				background: img,
 				userName:uni.getStorageSync("user_name"),
 				userIcon: uni.getStorageSync("user_icon"),
-				userGroup:uni.getStorageSync("user_group")
+				userGroup:uni.getStorageSync("user_group"),
+				day:'0',
+				month:'0',
+				week:'0'
 			}
 		},
 		methods:{
+			// 暂时不用
 			handleTimeButton(){
 				// uni.navigateTo({
 				// 	url: '../mine/mineTimes'
 				// })
 			},
-			
+			// 暂时不用
 			handleTaskButton(){
 				// uni.navigateTo({
 				// 	url: '../mine/mineTask'
@@ -102,9 +106,20 @@
 			},
 			
 			onLoad() {
-				this.userName = uni.getStorageSync("user_name")
-				this.userIcon = uni.getStorageSync("user_icon")
-				this.userGroup = uni.getStorageSync("user_group")
+			},
+			
+			onShow(){
+				this.userName = uni.getStorageSync("user_name");
+				this.userIcon = uni.getStorageSync("user_icon");
+				this.userGroup = uni.getStorageSync("user_group");
+				this.initData();
+			},
+			
+			async initData(){ 
+				const res = await service.mineTime(); 
+				this.day = res.data.hour.day
+				this.week = res.data.hour.week
+				this.month = res.data.hour.month
 			}
 		}
 	}

@@ -49,11 +49,11 @@
 			// 前往详情页面
 			handleGotoDescView() {
 				console.log('1234');
-				uni.navigateTo({
-					url: '../../pages/task/taskDesc',
-					animationDuration:200,
-					animationType:'pop-in'
-				})
+				// uni.navigateTo({
+					// url: '../../pages/task/taskDesc',
+					// animationDuration:200,
+					// animationType:'pop-in'
+				// })
 			},
 			// 点击提交按钮
 			handleSubmitTask(row) {
@@ -212,7 +212,6 @@
 	}
 	
 	.submit{
-		width:158upx;
 		height:60upx;
 		background:rgba(39,179,157,1);
 		border-radius:30upx;

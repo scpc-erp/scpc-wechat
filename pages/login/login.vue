@@ -2,17 +2,22 @@
 	<view class="content">
 		<view class="top-view" :style="{backgroundImage: 'url(' + background + ')'}">
 			<view class="top-view-content">
-				<view class="top-view-content-one">三维博弈ERP</view>
-				<!-- <view class="top-view-content-one">矿山易购Boss端</view> -->
+				<!-- <view class="top-view-content-one">三维博弈ERP</view> -->
+				<view class="top-view-content-one">矿山易购Boss端</view>
 				<image class="top-view-content-two" src="../../static/img/login/Login-cover.png"></image>
 				<view class="top-view-content-three">实时生产跟踪</view>
 			</view>
+			
 		</view>
 		<view class="bottom-view">
+			<!-- 账号 -->
 			<view class="bottom-view-account">
 				<image class="bottom-view-account-uimg" src="../../static/img/login/Login-icon.png"></image>
-				<input v-model="account" class="bottom-view-accountInput" type="text" value="" placeholder="请输入姓名" />
+				<view class="bottom-view-account-bgView">
+					<input v-model="account" class="bottom-view-accountInput" type="text" value="" placeholder="请输入姓名"/>
+				</view>
 			</view>
+			<!-- 密码 -->
 			<view class="bottom-view-pwd">
 				<image class="bottom-view-account-pimg" src="../../static/img/login/Login-qrCode.png" mode="scaleToFill"></image>
 				<m-input class="bottom-view-pwdInput" type="password" placeholder="请输入密码" v-model="password" />
@@ -35,9 +40,9 @@
 		data() {
 			return {
 				// 账号
-				account: '',
+				account: 'admin',
 				// 密码
-				password: '',
+				password: '123456',
 				// 为了适配小程序 将顶部背景图转成base64
 				background: img,
 				// 用户头像
@@ -47,8 +52,7 @@
 			}
 		},
 		methods: {
-			wxGetUserInfo: function(res) {
-				console.log("123");
+			wxGetUserInfo: function(res) { 
 				let _this = this;
 				uni.login({
 					provider: 'weixin',
@@ -65,9 +69,7 @@
 				});
 				_this.updateUserInfo()
 			},
-			async updateUserInfo() {
-				console.log(this.account)
-				console.log(this.account.length)
+			async updateUserInfo() { 
 				// 名称判断
 				if (this.account.length == 0) {
 					uni.showToast({
@@ -89,13 +91,13 @@
 				const res = await service.login(this.account, md5(this.password), this.wechatIcon, this.wechatCode)
 				if (res.errno == 0) {
 					// 名称
-					uni.setStorageSync('user_name', res.data.name)
+					uni.setStorageSync('user_name', res.data.name);
 					// 头像
-					uni.setStorageSync('user_icon', res.data.photo)
+					uni.setStorageSync('user_icon', res.data.photo);
 					// 分组
-					uni.setStorageSync('user_group', res.data.bzmc)
+					uni.setStorageSync('user_group', res.data.bzmc);
 					// token
-					uni.setStorageSync('user_token', res.data.token)
+					uni.setStorageSync('token', res.data.token);
 					uni.showToast({
 						icon: 'none',
 						title: '登录成功'
@@ -155,8 +157,7 @@
 
 	.bottom-view {
 		margin-top: 58upx;
-		width: 100%;
-		height: 300upx;
+		width: 100%; 
 	}
 
 	.bottom-view-account {
@@ -173,13 +174,21 @@
 		margin-left: 66upx;
 	}
 
-	.bottom-view-accountInput {
+	.bottom-view-account-bgView{
+		width: 100%;
+		height: 100%; 
+		margin: 0 66upx -10upx 30upx;
+		border-bottom: 1upx solid #EEEEEE;
+		line-height: 48upx; 
+		display: flex; 
+		align-items: center;
+	}
+
+	.bottom-view-accountInput { 
 		width: 100%;
 		font-size: 34upx;
 		font-weight: 400;
-		margin: 0 66upx 0 37upx;
-		color: rgba(51, 51, 51, 1);
-		border-bottom: 1upx solid #EEEEEE;
+		color: rgba(51, 51, 51, 1); 
 	}
 
 	.bottom-view-pwd {
@@ -188,7 +197,7 @@
 		height: 104upx;
 		display: flex;
 		justify-content: space-between;
-		align-items: center;
+		align-items: center; 
 	}
 
 	.bottom-view-account-pimg {
@@ -204,7 +213,7 @@
 		margin: 0 66upx 0 26upx;
 		color: rgba(51, 51, 51, 1);
 		line-height: 48upx;
-		border-bottom: 1upx solid #EEEEEE;
+		border-bottom: 1upx solid #EEEEEE; 
 	}
 
 	.bottom-view-loginBtn {
