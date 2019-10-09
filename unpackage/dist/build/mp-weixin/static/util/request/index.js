@@ -11,8 +11,7 @@ const PORT1 = '/baseinfo'
 
 // company : http://192.168.0.116:8360
 // home : http://192.168.2.184:8360
-// const BASE_URL = process.env.NODE_ENV === 'development' ? 'http://192.168.2.184:8360' : 'https://swby-scpc.ngrok.ibanzhuan.cn/api'
-const BASE_URL = process.env.NODE_ENV === 'development' ? 'https://swby-scpc.ngrok.ibanzhuan.cn/api' : 'https://swby-scpc.ngrok.ibanzhuan.cn/api'
+const BASE_URL = process.env.NODE_ENV === 'development' ? 'http://192.168.2.184:8360' : 'http://swby-scpc.ngrok.ibanzhuan.cn/api'
 
 request.ajax = (url, data, method = 'POST',  power) => {
 /*     
@@ -61,7 +60,7 @@ request.ajax = (url, data, method = 'POST',  power) => {
 　　　　　　　　　　break
 　　　　　　　　default:
 　　　　　　　　　　uni.showToast({
-　　　　　　　　　　　　title: parmas.errmsg,
+　　　　　　　　　　　　title: parmas.info,
 　　　　　　　　　　　　icon: 'none'
 　　　　　　　　　　})
 　　　　　　　　　　return Promise.reject()
