@@ -18,7 +18,7 @@
 						<view class="part-input-prompt"  :style="{'line-height':partViewHeight+'rpx'}">完成件数</view>
 						<view class="part-input-right">
 							<view v-if="current == 0" class="part-input">{{activeRow.JGSL}}</view>
-							<uni-number-box v-else :min="0" :max="activeRow.JGSL"></uni-number-box>
+							<uni-number-box @change="numberChange" v-else :min="0" :max="activeRow.JGSL" :value="jgsl"></uni-number-box>
 							<view class="part-input-unit"  :style="{'line-height':partViewHeight+'rpx'}">件</view>
 						</view>
 					</view>
@@ -168,7 +168,6 @@
 			},
 			//点击提交按钮调用方法
 			async onSubmit(){
-				console.log(this.activeRow)
 				let params = {
 					gyid: this.activeRow.ID,
 					jgjs: this.jgsl
@@ -188,6 +187,9 @@
 			},
 			closePopup(val) {
 				this.isHUDShow = val.show
+			},
+			numberChange(val) {
+				this.jgsl = val
 			}
 		}
 	}
