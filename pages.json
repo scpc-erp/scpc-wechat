@@ -5,24 +5,25 @@
 			"style": {
 				"navigationStyle": "custom"
 			}
-		},{
+		},
+		{
 			"path": "pages/task/task",
 			"style": {
-				"navigationStyle": "custom",
-				"navigationBarTitleText": "任务",
+				// "navigationStyle": "custom",
+				"navigationBarTitleText": "今日任务",
 				"enablePullDownRefresh": true
 			}
-		},{
+		},
+		{
+			"path": "pages/task/taskDesc",
+			"style": { 
+				"navigationBarTitleText": "任务详情" 
+			}
+		},
+		{
 			"path": "pages/mine/mine",
 			"style": {
-				"navigationStyle": "custom",
 				"navigationBarTitleText": "我的"
-			}
-		},{
-			"path": "pages/test/test",
-			"style": {
-				"navigationStyle": "custom",
-				"navigationBarTitleText": "test" 
 			}
 		}
     ],

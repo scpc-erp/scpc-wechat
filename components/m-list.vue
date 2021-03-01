@@ -1,6 +1,6 @@
 <template>
 	<view class="content">
-		<view class="all-item">
+		<view class="all-item" @tap="handleGotoDescView">
 			<view class="row-one">
 				<text class="order-top-Num">{{item.SSDD_TEXT}}</text>
 				<text class="order-status" :class="{'status-danger':item.DDLEVEL=='0401','status-warning':item.DDLEVEL=='0402'}">{{leavel[item.DDLEVEL]}}</text>
@@ -15,16 +15,16 @@
 				</view>
 				<view class="">
 					<text class="order-num">{{item.JGSL}}</text>
-					<text class="order-num-prompt">数量(个数)</text>
+					<text class="order-num-prompt">数量</text>
 				</view>
 			</view>
 			<view class="row-four">
 				<view class="order-radio"></view>
 				<text class="order-push-time-prompt">交货日期</text>
 				<text class="order-push-time">{{item.ENDTIME}}</text>
-				<button type="primary" class="submit">提交任务</button>
+				<!-- <button type="primary" class="submit">提交任务</button> -->
+				<button class="submit" @tap.stop='handleSubmitTask(item)'>提交任务</button>
 			</view>
-			
 		</view>
 	</view>
 </template>
@@ -46,10 +46,19 @@
 			};
 		},
 		methods:{
-			openDetail(id,name){
+			// 前往详情页面
+			handleGotoDescView() {
+				console.log('1234');
 				uni.navigateTo({
-					url: '../../pages/custom/custom-money-list?cid='+id + '&name=' + name,
-				});
+					url: '../../pages/task/taskDesc',
+					animationDuration:200,
+					animationType:'pop-in'
+				})
+			},
+			// 点击提交按钮
+			handleSubmitTask(row) {
+				// 将点击时间传出
+				this.$emit('handleSubmitTask', row)
 			}
 		}
 	}

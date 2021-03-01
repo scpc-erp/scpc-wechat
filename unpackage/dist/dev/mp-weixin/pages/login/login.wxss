@@ -1,107 +1,107 @@
 
-.status_bar{
-	height: 25px;
+.top-view {
 	width: 100%;
-}
-.top-view{
-	width: 100%;
-	height: 540rpx; 
-	background: url(../../static/img/Login-bg.beee0f96.png);
+	height: 540rpx;
 	background-size: cover;
 }
-.top-view-content{ 
+.top-view-content {
 	margin: 25% 10%;
 }
-.top-view-content-one{
-	font-size: 48rpx;  
-	font-weight:600;
-	color:rgba(255,255,255,1); 
-	font-family:PingFangSC-Semibold,PingFangSC;
+.top-view-content-one {
+	font-size: 48rpx;
+	font-weight: 600;
+	color: rgba(255, 255, 255, 1);
+	font-family: PingFangSC-Semibold, PingFangSC;
 }
-.top-view-content-two{ 
+.top-view-content-two {
 	width: 30rpx;
-	height: 30rpx; 
+	height: 30rpx;
 	background-position: center;
 }
-.top-view-content-three{
+.top-view-content-three {
 	margin-top: 7rpx;
 	margin-left: 9rpx;
-	font-size:36rpx;
+	font-size: 36rpx;
 	line-height: 50rpx;
-	font-weight:300;
-	color:rgba(255,255,255,0.6); 
-	display: inline-block; 
-	vertical-align:text-bottom;
-	font-family:PingFangSC-Light,PingFangSC;
+	font-weight: 300;
+	color: rgba(255, 255, 255, 0.6);
+	display: inline-block;
+	vertical-align: text-bottom;
+	font-family: PingFangSC-Light, PingFangSC;
 }
-.bottom-view{
+.bottom-view {
 	margin-top: 58rpx;
 	width: 100%;
 	height: 300rpx;
 }
-.bottom-view-account{
-	width: 100%; 
-	height: 104rpx; 
-	display:-webkit-box; 
-	display:-webkit-flex; 
-	display:-ms-flexbox; 
-	display:flex;
-	-webkit-box-orient: horizontal;
-	-webkit-box-direction: normal;
-	-webkit-flex-direction: row;
-	    -ms-flex-direction: row;
-	        flex-direction: row;
+.bottom-view-account {
+	width: 100%;
+	height: 104rpx;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-pack: justify;
+	-webkit-justify-content: space-between;
+	    -ms-flex-pack: justify;
+	        justify-content: space-between;
+	-webkit-box-align: center;
+	-webkit-align-items: center;
+	    -ms-flex-align: center;
+	        align-items: center;
 }
-.bottom-view-account-uimg{
-	width: 32rpx;
-	height: 32rpx;
-	left: 66rpx; 
-	top: 35rpx;
+.bottom-view-account-uimg {
+	width: 45rpx;
+	height: 35rpx;
+	margin-left: 66rpx;
 }
 .bottom-view-accountInput {
-	font-size:34rpx;
-	font-weight:400;
-	margin: 0 66rpx 0 100rpx;
-	color:rgba(51,51,51,1);
-	line-height:48rpx;
+	width: 100%;
+	font-size: 34rpx;
+	font-weight: 400;
+	margin: 0 66rpx 0 37rpx;
+	color: rgba(51, 51, 51, 1);
 	border-bottom: 1rpx solid #EEEEEE;
 }
-.bottom-view-pwd{
-	margin-top: 10rpx;  
-	width: 100%; 
-	height: 104rpx; 
-	display: -webkit-box; 
-	display: -webkit-flex; 
-	display: -ms-flexbox; 
+.bottom-view-pwd {
+	margin-top: 10rpx;
+	width: 100%;
+	height: 104rpx;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
 	display: flex;
+	-webkit-box-pack: justify;
+	-webkit-justify-content: space-between;
+	    -ms-flex-pack: justify;
+	        justify-content: space-between;
+	-webkit-box-align: center;
+	-webkit-align-items: center;
+	    -ms-flex-align: center;
+	        align-items: center;
 }
-.bottom-view-account-pimg{
-	width: 32rpx;
-	height: 32rpx;
-	left: 66rpx; 
-	top: 35rpx;
+.bottom-view-account-pimg {
+	width: 45rpx;
+	height: 40rpx;
+	margin-left: 66rpx;
 }
-.bottom-view-pwdInput{
-	font-size:34rpx;
-	font-family:PingFangSC-Regular,PingFangSC;
-	font-weight:400;
-	margin: 0 66rpx 0 100rpx;
-	color:rgba(51,51,51,1);
-	line-height:48rpx;
+.bottom-view-pwdInput {
+	font-size: 34rpx;
+	font-family: PingFangSC-Regular, PingFangSC;
+	font-weight: 400;
+	margin: 0 66rpx 0 26rpx;
+	color: rgba(51, 51, 51, 1);
+	line-height: 48rpx;
 	border-bottom: 1rpx solid #EEEEEE;
 }
-.bottom-view-loginBtn{
+.bottom-view-loginBtn {
 	margin: 88rpx 55rpx 0 55rpx;
-	
-	/* margin-top: 88upx; */
-	/* margin-left:55upx; */
-	/* margin-right:55upx; */
 	height: 88rpx;
-	
-	background:rgba(39,179,157,1);
-	border-radius:44rpx;
-	font-size:34rpx;
-	font-family:PingFangSC-Medium,PingFangSC;
-	font-weight:500;
+	background: rgba(39, 179, 157, 1);
+	border-radius: 44rpx;
+	font-size: 34rpx;
+	font-family: PingFangSC-Medium, PingFangSC;
+	font-weight: 500;
+	color: rgba(255, 255, 255, 1);
 }
 
